@@ -19,7 +19,7 @@ def one_pointer(i,arr,n):
     (arr[i] , arr[n-i-1]) = (arr[n-i-1] , arr[i])
     one_pointer(i+1,arr,n)
 
-
+# function to check palindrome
 def ispalindrome(i,n,arr):
     if i >= n//2:
         return True
