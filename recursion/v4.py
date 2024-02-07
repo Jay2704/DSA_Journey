@@ -1,7 +1,7 @@
 
 # Reverse an array using recursion
 
-# 1. Two pointer approach
+# 1. Two pointer approach (l,r)
 
 def two_pointer(l,r,arr):
     
@@ -11,7 +11,7 @@ def two_pointer(l,r,arr):
     two_pointer(l+1,r-1,arr)
 
 
-# 2. One pointer approach
+# 2. One pointer approach (i)
 
 def one_pointer(i,arr,n):
     if i >= n//2:
