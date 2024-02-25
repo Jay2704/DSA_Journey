@@ -1,4 +1,4 @@
-# Print all Subsequence with sum = Sum
+# Print all Subsequence with sum = Sum using recursion
 
 def allSubseq(ind, ds, s, total,arr,n):
 
@@ -17,7 +17,7 @@ def allSubseq(ind, ds, s, total,arr,n):
 
 
 
-# Print only one subsequence with sum = Sum
+# Print only one subsequence with sum = Sum 
 
 
             # Complete it
