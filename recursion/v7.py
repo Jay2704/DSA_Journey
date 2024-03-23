@@ -12,7 +12,7 @@ def allSubseq(ind, ds, s, total,arr,n):
     allSubseq(ind+1,ds,s,total,arr,n)
 
     s -= arr[ind]
-    ds.pop()
+    ds.pop() # remove the element
     allSubseq(ind+1,ds,s,total,arr,n)
 
 
