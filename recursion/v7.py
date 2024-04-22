@@ -6,6 +6,7 @@ def allSubseq(ind, ds, s, total,arr,n):
         if s == total:
             print(ds)
             return 
+
     
     ds.append(arr[ind])
     s += arr[ind]
