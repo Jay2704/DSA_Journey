@@ -1,5 +1,5 @@
 
-# Reverse an array using recursion
+# Reverse an array using recursion to check whether its a palindrome or not
 
 # 1. Two pointer approach (l,r)
 
