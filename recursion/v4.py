@@ -1,7 +1,7 @@
 
-# Reverse an array using recursion to check whether its a palindrome or not
+# Reverse an array using recursion to check whether its a palindrome.
 
-# 1. Two pointer approach (l,r)
+# 1. Two pointer approach 
 
 def two_pointer(l,r,arr):
     
@@ -11,7 +11,7 @@ def two_pointer(l,r,arr):
     two_pointer(l+1,r-1,arr)
 
 
-# 2. One pointer approach (i)
+# 2. One pointer approach 
 
 def one_pointer(i,arr,n):
     if i >= n//2:
