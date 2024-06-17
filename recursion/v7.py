@@ -5,7 +5,7 @@ def allSubseq(ind, ds, s, total,arr,n):
     if ind == n:
         if s == total:
             print(ds)
-            return 
+        return 
 
     
     ds.append(arr[ind])
@@ -15,6 +15,7 @@ def allSubseq(ind, ds, s, total,arr,n):
     s -= arr[ind]
     ds.pop() # remove the element
     allSubseq(ind+1,ds,s,total,arr,n)
+
 
 
 
