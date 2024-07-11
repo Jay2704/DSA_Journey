@@ -8,7 +8,7 @@ def allSubseq(ind, ds, s, total,arr,n):
         return 
 
     
-    ds.append(arr[ind])
+    ds.append(arr[ind]) # add the element
     s += arr[ind]
     allSubseq(ind+1,ds,s,total,arr,n)
 
