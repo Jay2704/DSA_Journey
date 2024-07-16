@@ -1,6 +1,6 @@
 # Print all Subsequence with sum = Sum using recursion
 
-def allSubseq(ind, ds, s, total,arr,n):
+def allSubseq(ind, ds, s, total, arr, n):
 
     if ind == n:
         if s == total:
