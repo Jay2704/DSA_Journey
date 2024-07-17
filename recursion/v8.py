@@ -6,8 +6,13 @@ def findCombination():
 
 
 
-def combinationSum():
+def combinationSum(arr, target):
     pass
 
+
+
 if __name__ == '__main__':
-    pass
+    arr = list(map(int, input().split("Enter the Array: ")))
+    target = int(input("Enter the Target Sum: "))
+    print(combinationSum(arr, target))
+
