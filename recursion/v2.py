@@ -1,5 +1,4 @@
-#print name n times
-
+# print the numbers from 1 to n
 def one_to_n(i,n):
     if i > n:
         return 
@@ -7,7 +6,7 @@ def one_to_n(i,n):
     one_to_n(i+1,n)
 
 
-# print 1 to n
+# print the numbers from n to 1
 
 def n_to_one(n):
     if n <= 0:
@@ -15,6 +14,10 @@ def n_to_one(n):
     print(n)
     n_to_one(n-1)
 
+
+
+
+# below are the same questions written using backtracking algorithm
 
 # print 1 to n using backtracking
 
