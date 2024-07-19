@@ -7,7 +7,7 @@ def function():
         return
     cnt += 1
     print(cnt)
-    function()
+    function() #recursive function call
 
 if __name__ == "__main__":
     # call function
