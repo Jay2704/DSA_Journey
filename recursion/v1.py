@@ -1,4 +1,4 @@
-
+# initialize the count to zero.
 cnt = 0
 
 def function():
