@@ -6,7 +6,6 @@ def allSubseq(ind, ds, s, total, arr, n):
         if s == total:
             print(ds)
         return 
-
     
     ds.append(arr[ind]) # add the element
     s += arr[ind]
@@ -15,8 +14,6 @@ def allSubseq(ind, ds, s, total, arr, n):
     s -= arr[ind]
     ds.pop() # remove the element
     allSubseq(ind+1,ds,s,total,arr,n)
-
-
 
 
 
@@ -42,6 +39,9 @@ def findOneSubseq(ind, ds, s, total, arr, n):
         return result  # Valid subsequence found, return it
 
     return None  # No valid subsequence found in any branch
+
+
+
 
 def printOneSubseq(arr, total):
     n = len(arr)
