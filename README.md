@@ -2,15 +2,6 @@
 
 Welcome to the DSA Journey repository! This project is a collection of data structures and algorithms implemented in Python. It serves as a learning resource and a reference for anyone interested in understanding and applying various DSA concepts.
 
-## Contents
-
-- **Arrays**
-  - `largest_number.py`: Find the largest number in an array.
-  - `second_largest.py`: Find the second largest number in an array.
-  - `check_sorted.py`: Check if an array is sorted in non-decreasing order.
-
-- **Recursion**
-  - `v7.py`: Print all subsequences of an array that sum to a given total.
 
 ## Getting Started
 
