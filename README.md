@@ -36,14 +36,9 @@ python3 arrays/check_sorted.py
 
 Follow the prompts to input your data.
 
-## Contributing
-
-Contributions are welcome! Feel free to open issues or submit pull requests.
 
 ## License
 
 This project is open-source and available under the MIT License.
 
-## Contact
 
-For any questions or feedback, please contact [Jay2704](https://github.com/Jay2704).
