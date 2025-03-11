@@ -1,5 +1,5 @@
 # Function to find the largest number in an array
-# Takes a list of numbers as input and returns the largest number
+
 
 def largest_number(arr):
     # Initialize max_num with the first element of the array
@@ -20,7 +20,3 @@ if __name__ == "__main__":
     arr = list(map(int, input().split()))
     # Print the largest number in the array
     print("Largest number in the array is: ", largest_number(arr))
-
-
-
-# Function to find the largest number in an array
