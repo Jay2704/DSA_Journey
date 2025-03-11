@@ -5,12 +5,16 @@ def second_largest(arr):
     if len(arr) < 2:
         return None  # Not enough elements for a second largest
 
+    # Initialize large and second_large to negative infinity
     large, second_large = float('-inf'), float('-inf')
+    # Iterate over each number in the array
     for number in arr:
+        # If the current number is greater than large, update second_large and large
         if number > large:
             second_large = large
             large = number
 
+    # Return second_large if it has been updated, otherwise return None
     return second_large if second_large != float('-inf') else None
 
 
