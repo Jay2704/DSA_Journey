@@ -8,6 +8,8 @@ def is_sorted(arr):
     return True
 
 
+
+
 if __name__ == "__main__":
     # Prompt the user to enter an array of numbers
     print("Enter the array: ")
