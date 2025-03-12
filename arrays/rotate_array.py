@@ -15,7 +15,6 @@ def left_rotate_one(arr):
 
 
 
-
 # Function to perform a left rotation by k positions on an array
 def left_rotate_k(arr, k):
     k = k % len(arr)
@@ -30,8 +29,6 @@ def left_rotate_k(arr, k):
     arr[:] = reversed(arr)
 
     return arr
-
-
 
 
 
