@@ -15,6 +15,8 @@ def move_zeros(nums):
     return nums
 
 
+
+
 def main():
     """
     Main function to take user input, process the list, and print the output.
