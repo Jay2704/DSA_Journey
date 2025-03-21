@@ -5,6 +5,7 @@ class Node:
         self.right = None
         self.val = key
 
+
 class BST:
     """A class for the Binary Search Tree."""
     def __init__(self):
