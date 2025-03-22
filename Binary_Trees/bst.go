@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-// Strucure of Node
+// Strucure of Node of BST
 type Node struct {
 	data  int
 	left  *Node
