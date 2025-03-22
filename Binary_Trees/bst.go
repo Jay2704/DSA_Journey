@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-// Node structure
+// Strucure of Node
 type Node struct {
 	data  int
 	left  *Node
