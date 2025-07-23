@@ -2,15 +2,7 @@ from stack import Stack
 
 def next_greater_element(nums):
     n = len(nums)
-    result = [-1] * n
-    stack = Stack()
-    for i in range(n - 1, -1, -1):
-        while not stack.is_empty() and stack.peek() <= nums[i]:
-            stack.pop()
-        if not stack.is_empty():
-            result[i] = stack.peek()
-        stack.push(nums[i])
-    return result
+    
 
 
 def main():
