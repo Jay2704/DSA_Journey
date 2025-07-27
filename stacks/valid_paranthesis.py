@@ -1,12 +1,14 @@
 from stack import Stack
 
 def is_valid_paranthesis(s):
-    stack = Stack()
+    stack = Stack() #make an object of stack from stack.py
     hash_map = {
         ")" : "(",
         "}" : "{",
         "]" : "["
     }
+    stack.__stack_elements
+    print(stack.__stack_elements)
     
     for char in s:
         if char in hash_map.values():
