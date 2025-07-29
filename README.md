@@ -9,6 +9,7 @@ Welcome to **DSA Journey**, a comprehensive collection of Data Structures & Algo
 ## 📋 Table of Contents
 
 - [Repository Structure](#-repository-structure)
+- [Visual Representations](#-visual-representations)
 - [Getting Started](#-getting-started)
 - [Topics Covered](#-topics-covered)
 - [Usage](#-usage)
@@ -51,6 +52,84 @@ DSA_Journey/
 ```
 
 > **Note**: In **recursion/**, `v1.py`–`v7.py` correspond to Striver's Recursion videos 1–7.
+
+## 🎨 Visual Representations
+
+### 📊 Stack Operations
+```
+┌─────────────┐
+│   STACK     │
+├─────────────┤
+│     5       │ ← Top (Last In)
+│     4       │
+│     3       │
+│     2       │
+│     1       │ ← Bottom (First In)
+└─────────────┘
+
+Operations:
+• Push: Add to top
+• Pop: Remove from top
+• Peek: View top element
+```
+
+### 🌳 Binary Search Tree
+```
+       8
+      / \
+     3   10
+    / \    \
+   1   6    14
+      / \   /
+     4   7 13
+
+Traversal Orders:
+• Inorder: 1, 3, 4, 6, 7, 8, 10, 13, 14
+• Preorder: 8, 3, 1, 6, 4, 7, 10, 14, 13
+• Postorder: 1, 4, 7, 6, 3, 13, 14, 10, 8
+```
+
+### 🔄 Recursion Flow
+```
+Factorial(5)
+├── 5 × Factorial(4)
+│   ├── 4 × Factorial(3)
+│   │   ├── 3 × Factorial(2)
+│   │   │   ├── 2 × Factorial(1)
+│   │   │   │   └── 1 (Base Case)
+│   │   │   └── 2 × 1 = 2
+│   │   └── 3 × 2 = 6
+│   └── 4 × 6 = 24
+└── 5 × 24 = 120
+```
+
+### 📈 Next Greater Element
+```
+Input:  [4, 5, 2, 25]
+Output: [5, 25, 25, -1]
+
+Visualization:
+4 → 5 (next greater)
+5 → 25 (next greater)  
+2 → 25 (next greater)
+25 → -1 (no greater element)
+```
+
+### 🔗 Valid Parentheses
+```
+Valid:   "({[]})"     Invalid: "([)]"
+         │ │ │ │              │ │ │ │
+         └─┘ └─┘              └─┘ └─┘
+         Matched pairs         Mismatched
+
+Stack Operations:
+"(" → Push
+"{" → Push  
+"[" → Push
+"]" → Pop & Match
+"}" → Pop & Match
+")" → Pop & Match
+```
 
 ## 🚀 Getting Started
 
