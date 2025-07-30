@@ -1,6 +1,5 @@
 import math
 
-
 class MinStack(self):
     def __init__(self):
         self.stack = []
