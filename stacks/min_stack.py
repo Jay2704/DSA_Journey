@@ -1,5 +1,8 @@
 import math
 
+# This minimum stack takes O(2*N) space complexity.
+
+
 class MinStack(self):
     def __init__(self):
         self.stack = []
