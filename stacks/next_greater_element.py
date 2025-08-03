@@ -1,15 +1,7 @@
 from stack import Stack
 
 def next_greater_element(nums):
-    """
-    Find the next greater element for each element in the array.
     
-    Args:
-        nums: List of integers
-        
-    Returns:
-        List where result[i] is the next greater element for nums[i], or -1 if none exists
-    """
     n = len(nums)
     stack = Stack()
     result = [-1] * n
