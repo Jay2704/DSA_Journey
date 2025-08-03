@@ -12,7 +12,7 @@ def translate_srt_complete(input_file, output_file, source_lang='bn', target_lan
         # Load the subtitle file
         subs = pysrt.open(input_file)
         translator = Translator()
-        
+
         print(f"Translating {input_file} from {source_lang} to {target_lang}...")
         print(f"Total subtitles: {len(subs)}")
         
