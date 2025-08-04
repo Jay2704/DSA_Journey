@@ -174,6 +174,10 @@ class CrewAIAgent:
             expected_output="A comprehensive analysis report with insights and recommendations"
         )
     
+    def function111(self):
+        print("function111")    
+        return "function111"
+    
     def create_management_task(self, project_description: str) -> Task:
         return Task(
             description=f"""
