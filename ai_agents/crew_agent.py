@@ -1,3 +1,30 @@
+"""
+Crew AI Agent Implementation
+============================
+
+This module implements a comprehensive AI agent system using the CrewAI framework.
+It provides multiple specialized agents that can work together to accomplish complex tasks.
+
+Key Features:
+- Multiple specialized agents (Researcher, Writer, Analyst, etc.)
+- Configurable tasks and workflows
+- Integration with various tools (search, calculator, file operations)
+- Customizable agent roles and responsibilities
+- Error handling and logging
+
+Dependencies:
+- crewai
+- langchain
+- langchain-openai
+- python-dotenv
+
+Usage:
+    from ai_agents.crew_agent import CrewAIAgent
+    
+    agent = CrewAIAgent()
+    result = agent.run_research_project("Your research topic")
+"""
+
 import os
 import json
 from typing import List, Dict, Any, Optional
@@ -8,33 +35,54 @@ from langchain.tools import DuckDuckGoSearchRun, Calculator
 from langchain_community.tools import FileWriteTool
 from dotenv import load_dotenv
 
+# Load environment variables for API keys
 load_dotenv()
 
 
 class CrewAIAgent:
+    """
+    A comprehensive AI agent system using CrewAI framework.
+    
+    This class provides multiple specialized agents that can collaborate
+    on complex tasks like research, analysis, and content creation.
+    """
     
     def __init__(self, api_key: Optional[str] = None):
+        """
+        Initialize the Crew AI Agent system.
+        
+        Args:
+            api_key: OpenAI API key (optional, will use environment variable if not provided)
+        """
         self.api_key = api_key or os.getenv("OPENAI_API_KEY")
         if not self.api_key:
             raise ValueError("OpenAI API key is required. Set OPENAI_API_KEY environment variable.")
         
+        # Initialize the language model with GPT-4
         self.llm = ChatOpenAI(
             model="gpt-4",
             temperature=0.7,
             api_key=self.api_key
         )
         
-        self.search_tool = DuckDuckGoSearchRun()
-        self.calculator_tool = Calculator()
-        self.file_writer_tool = FileWriteTool()
+        # Initialize various tools for agents to use
+        self.search_tool = DuckDuckGoSearchRun()  # For web research
+        self.calculator_tool = Calculator()        # For calculations
+        self.file_writer_tool = FileWriteTool()    # For file operations
         
+        # Registry to store agents and crews
         self.agents = {}
         self.crews = {}
         
+        # Set up default specialized agents
         self._setup_default_agents()
     
     def _setup_default_agents(self):
+        """
+        Initialize default specialized agents with specific roles and capabilities.
+        """
         
+        # Research Specialist Agent - Handles information gathering and analysis
         self.agents['researcher'] = Agent(
             role='Research Specialist',
             goal='Conduct thorough research and gather comprehensive information',
@@ -44,10 +92,11 @@ class CrewAIAgent:
             information in a clear, organized manner.""",
             verbose=True,
             allow_delegation=False,
-            tools=[self.search_tool],
+            tools=[self.search_tool],  # Can search the web for information
             llm=self.llm
         )
         
+        # Content Creator Agent - Transforms research into engaging content
         self.agents['writer'] = Agent(
             role='Content Creator',
             goal='Create engaging, well-structured content based on research',
@@ -57,10 +106,11 @@ class CrewAIAgent:
             resonates with different audiences.""",
             verbose=True,
             allow_delegation=False,
-            tools=[self.file_writer_tool],
+            tools=[self.file_writer_tool],  # Can write content to files
             llm=self.llm
         )
         
+        # Data Analyst Agent - Analyzes data and provides insights
         self.agents['analyst'] = Agent(
             role='Data Analyst',
             goal='Analyze data and provide insights and recommendations',
@@ -69,10 +119,11 @@ class CrewAIAgent:
             patterns, trends, and actionable insights from data.""",
             verbose=True,
             allow_delegation=False,
-            tools=[self.calculator_tool],
+            tools=[self.calculator_tool],  # Can perform calculations
             llm=self.llm
         )
         
+        # Project Manager Agent - Coordinates and manages projects
         self.agents['manager'] = Agent(
             role='Project Manager',
             goal='Coordinate tasks, manage timelines, and ensure project success',
@@ -80,13 +131,25 @@ class CrewAIAgent:
             coordinating complex projects, managing timelines, and ensuring all 
             team members work together effectively to achieve project goals.""",
             verbose=True,
-            allow_delegation=True,
+            allow_delegation=True,  # Can delegate tasks to other agents
             tools=[],
             llm=self.llm
         )
     
     def create_custom_agent(self, role: str, goal: str, backstory: str, 
                            tools: List = None) -> Agent:
+        """
+        Create a custom agent with specified parameters.
+        
+        Args:
+            role: The role/title of the agent
+            goal: The primary goal of the agent
+            backstory: The agent's background and expertise
+            tools: List of tools the agent can use
+            
+        Returns:
+            Agent: The created agent instance
+        """
         agent = Agent(
             role=role,
             goal=goal,
@@ -97,12 +160,23 @@ class CrewAIAgent:
             llm=self.llm
         )
         
+        # Store the agent with a unique key
         agent_key = f"custom_{len(self.agents)}"
         self.agents[agent_key] = agent
         
         return agent
     
     def create_research_task(self, topic: str, requirements: str = "") -> Task:
+        """
+        Create a research task for the research specialist.
+        
+        Args:
+            topic: The research topic
+            requirements: Specific requirements for the research
+            
+        Returns:
+            Task: The research task
+        """
         return Task(
             description=f"""
             Conduct comprehensive research on the topic: {topic}
@@ -126,6 +200,16 @@ class CrewAIAgent:
         )
     
     def create_writing_task(self, research_output: str, content_type: str = "article") -> Task:
+        """
+        Create a writing task for the content creator.
+        
+        Args:
+            research_output: The output from the research task
+            content_type: Type of content to create (article, report, blog, etc.)
+            
+        Returns:
+            Task: The writing task
+        """
         return Task(
             description=f"""
             Create engaging {content_type} content based on the research provided.
@@ -150,6 +234,16 @@ class CrewAIAgent:
         )
     
     def create_analysis_task(self, data: str, analysis_type: str = "general") -> Task:
+        """
+        Create an analysis task for the data analyst.
+        
+        Args:
+            data: The data to analyze
+            analysis_type: Type of analysis to perform
+            
+        Returns:
+            Task: The analysis task
+        """
         return Task(
             description=f"""
             Perform {analysis_type} analysis on the provided data.
@@ -174,11 +268,16 @@ class CrewAIAgent:
             expected_output="A comprehensive analysis report with insights and recommendations"
         )
     
-    def function111(self):
-        print("function111")    
-        return "function111"
-    
     def create_management_task(self, project_description: str) -> Task:
+        """
+        Create a project management task.
+        
+        Args:
+            project_description: Description of the project to manage
+            
+        Returns:
+            Task: The management task
+        """
         return Task(
             description=f"""
             Manage and coordinate the project: {project_description}
@@ -204,8 +303,21 @@ class CrewAIAgent:
     
     def setup_crew(self, agents: List[str], tasks: List[Task], 
                    process: Process = Process.sequential) -> Crew:
+        """
+        Set up a crew with specified agents and tasks.
+        
+        Args:
+            agents: List of agent keys to include in the crew
+            tasks: List of tasks for the crew to execute
+            process: The process type (sequential, hierarchical, etc.)
+            
+        Returns:
+            Crew: The configured crew
+        """
+        # Get the actual agent objects from the registry
         crew_agents = [self.agents[agent] for agent in agents if agent in self.agents]
         
+        # Create and configure the crew
         crew = Crew(
             agents=crew_agents,
             tasks=tasks,
@@ -217,17 +329,32 @@ class CrewAIAgent:
     
     def run_research_project(self, topic: str, requirements: str = "", 
                            output_file: str = None) -> Dict[str, Any]:
+        """
+        Run a complete research project with research and writing phases.
+        
+        Args:
+            topic: The research topic
+            requirements: Specific requirements for the research
+            output_file: Optional file to save the results
+            
+        Returns:
+            Dict: Results of the research project
+        """
         try:
+            # Create the research and writing tasks
             research_task = self.create_research_task(topic, requirements)
             writing_task = self.create_writing_task("{{research_output}}", "research report")
             
+            # Set up crew with researcher and writer agents
             crew = self.setup_crew(
                 agents=['researcher', 'writer'],
                 tasks=[research_task, writing_task]
             )
             
+            # Execute the crew workflow
             result = crew.kickoff()
             
+            # Save results to file if specified
             if output_file:
                 self._save_results(result, output_file)
             
@@ -247,15 +374,28 @@ class CrewAIAgent:
             }
     
     def run_data_analysis_project(self, data: str, analysis_type: str = "general") -> Dict[str, Any]:
+        """
+        Run a data analysis project with analysis and management phases.
+        
+        Args:
+            data: The data to analyze
+            analysis_type: Type of analysis to perform
+            
+        Returns:
+            Dict: Results of the analysis project
+        """
         try:
+            # Create analysis and management tasks
             analysis_task = self.create_analysis_task(data, analysis_type)
             management_task = self.create_management_task(f"Data analysis project: {analysis_type}")
             
+            # Set up crew with analyst and manager agents
             crew = self.setup_crew(
                 agents=['analyst', 'manager'],
                 tasks=[analysis_task, management_task]
             )
             
+            # Execute the crew workflow
             result = crew.kickoff()
             
             return {
@@ -274,22 +414,36 @@ class CrewAIAgent:
             }
     
     def run_comprehensive_project(self, topic: str, project_type: str = "research") -> Dict[str, Any]:
+        """
+        Run a comprehensive project with all agents working together.
+        
+        Args:
+            topic: The project topic
+            project_type: Type of project (research, analysis, etc.)
+            
+        Returns:
+            Dict: Results of the comprehensive project
+        """
         try:
+            # Handle different project types
             if project_type == "research":
                 return self.run_research_project(topic)
             elif project_type == "analysis":
                 return self.run_data_analysis_project(topic)
             else:
+                # Custom comprehensive project with all agents
                 research_task = self.create_research_task(topic)
                 writing_task = self.create_writing_task("{{research_output}}")
                 analysis_task = self.create_analysis_task("{{writing_output}}")
                 management_task = self.create_management_task(f"Comprehensive project: {topic}")
                 
+                # Set up crew with all agents
                 crew = self.setup_crew(
                     agents=['researcher', 'writer', 'analyst', 'manager'],
                     tasks=[research_task, writing_task, analysis_task, management_task]
                 )
                 
+                # Execute the comprehensive workflow
                 result = crew.kickoff()
                 
                 return {
@@ -310,6 +464,13 @@ class CrewAIAgent:
             }
     
     def _save_results(self, results: Any, filename: str):
+        """
+        Save results to a file.
+        
+        Args:
+            results: The results to save
+            filename: The filename to save to
+        """
         try:
             with open(filename, 'w', encoding='utf-8') as f:
                 if isinstance(results, str):
@@ -320,6 +481,12 @@ class CrewAIAgent:
             print(f"Error saving results: {e}")
     
     def get_agent_status(self) -> Dict[str, Any]:
+        """
+        Get the status of all agents.
+        
+        Returns:
+            Dict: Status information for all agents
+        """
         status = {}
         for key, agent in self.agents.items():
             status[key] = {
@@ -332,17 +499,23 @@ class CrewAIAgent:
 
 
 def main():
+    """
+    Example usage of the Crew AI Agent system.
+    """
     print("=== Crew AI Agent System Demo ===\n")
     
     try:
+        # Initialize the agent system
         agent_system = CrewAIAgent()
         print("✅ Crew AI Agent system initialized successfully")
         
+        # Display available agents
         print("\n📋 Available Agents:")
         status = agent_system.get_agent_status()
         for agent_key, agent_info in status.items():
             print(f"  - {agent_key}: {agent_info['role']}")
         
+        # Example 1: Research Project
         print("\n🔍 Running Research Project...")
         research_result = agent_system.run_research_project(
             topic="Artificial Intelligence in Healthcare",
@@ -355,6 +528,7 @@ def main():
         else:
             print(f"❌ Research project failed: {research_result['error']}")
         
+        # Example 2: Data Analysis Project
         print("\n📊 Running Data Analysis Project...")
         analysis_result = agent_system.run_data_analysis_project(
             data="Sample data for analysis: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]",
