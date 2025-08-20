@@ -27,11 +27,11 @@ class CrewAIAgent:
         self.search_tool = DuckDuckGoSearchRun()
         self.calculator_tool = Calculator()
         self.file_writer_tool = FileWriteTool()
-        
         self.agents = {}
         self.crews = {}
         
         self._setup_default_agents()
+    
     
     def _setup_default_agents(self):
         
