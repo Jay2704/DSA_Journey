@@ -16,7 +16,7 @@ def allSubseq(ind, ds, s, total, arr, n):
     allSubseq(ind+1,ds,s,total,arr,n)
 
 
-zz
+
 def findOneSubseq(ind, ds, s, total, arr, n):
     if ind == n:
         if s == total:
