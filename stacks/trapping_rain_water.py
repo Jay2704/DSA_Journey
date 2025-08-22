@@ -12,12 +12,7 @@ def trap(height):
             else:
                 water += left_max - height[left]
             left += 1
-        else:
-            if height[right] > right_max:
-                right_max = height[right]
-            else:
-                water += right_max - height[right]
-            right -= 1
+        
     return water
 
 
