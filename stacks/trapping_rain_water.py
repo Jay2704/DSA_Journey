@@ -20,5 +20,4 @@ def trap(height):
             right -= 1
     return water
 
-print(trap([0,1,0,2,1,0,1,3,2,1,2,1]))
 
