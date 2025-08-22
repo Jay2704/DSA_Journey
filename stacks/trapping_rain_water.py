@@ -5,13 +5,7 @@ def trap(height):
     right_max = 0
     water = 0
 
-    while left < right:
-        if height[left] < height[right]:
-            if height[left] > left_max:
-                left_max = height[left]
-            else:
-                water += left_max - height[left]
-            left += 1
+    
         
     return water
 
