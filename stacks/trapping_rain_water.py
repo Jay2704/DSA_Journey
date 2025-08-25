@@ -1,2 +1,3 @@
 
 
+def trap(height):
