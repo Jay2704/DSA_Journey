@@ -15,5 +15,6 @@ def trap(height):
                 water += left_max - height[left]
             left += 1
         else:
-            pass
-        
+            if height[right] > right_max:
+                pass
+            
