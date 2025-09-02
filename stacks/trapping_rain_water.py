@@ -33,9 +33,17 @@ def solution2(height):
     # left pointer and right pointer
     left = 0
     right = len(height) - 1
-    left_max = 0
-    right_max = 0
-    water_trapped = 0
+    left_max = height[left]
+    right_max = height[right]
+
+    while left < right:
+        if left_max < right_max:
+            if height[left] > left_max:
+                left_max = height[left]
+            else:
+                pass
+
+
 
 
 print(solution1([0,1,0,2,1,0,1,3,2,1,2,1]))
