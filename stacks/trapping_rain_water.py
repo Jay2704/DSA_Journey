@@ -26,8 +26,6 @@ def solution1(height):
     return water_trapped
 
 
-
-
 def solution2(height):
     # time complexity: O(n)
     # space complexity: O(1)
