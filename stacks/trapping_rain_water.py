@@ -3,8 +3,7 @@
 def solution1(height):
 
     # time complexity: O(n)
-    # space complexity: O(n)    
-    # two pointer approach
+    # space complexity: O(n)  
     # DP approach
 
     n = len(height)
@@ -23,5 +22,20 @@ def solution1(height):
     for k in range(n):
         water_trapped += min(left_max[k], right_max[k]) - height[k]
     return water_trapped
+
+
+
+
+def solution2(height):
+    # time complexity: O(n)
+    # space complexity: O(1)
+    # two pointer approach
+    # left pointer and right pointer
+    left = 0
+    right = len(height) - 1
+    left_max = 0
+    right_max = 0
+    water_trapped = 0
+
 
 print(solution1([0,1,0,2,1,0,1,3,2,1,2,1]))
