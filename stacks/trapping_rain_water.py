@@ -1,6 +1,12 @@
 
 
 def solution1(height):
+
+    # time complexity: O(n)
+    # space complexity: O(n)    
+    # two pointer approach
+    # DP approach
+
     n = len(height)
     left_max = [0] * n
     right_max = [0] * n
