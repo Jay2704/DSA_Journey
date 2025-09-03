@@ -84,7 +84,7 @@ class Stack:
         if self.__stack_elements:
             return self.__stack_elements[-1]
         else:
-            return None
+            pass
         
     def is_empty(self):
         """
