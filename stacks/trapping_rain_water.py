@@ -57,8 +57,6 @@ def solution2(height):
     return water_trapped
 
 
-
-
 def test_solutions():
     """Test both solutions with comprehensive test cases including edge cases"""
     
