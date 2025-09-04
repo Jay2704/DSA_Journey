@@ -130,6 +130,17 @@ class MinStack:
         Time Complexity: O(1)
         """
         return len(self.stack)
+
+    def get_sum(self):
+        """
+        Return the sum of all elements in the stack.
+
+        Returns:
+            The sum of all elements.
+
+        Time Complexity: O(N), where N is the number of elements.
+        """
+        return sum(element for element, _ in self.stack)
     
     def __str__(self):
         """
@@ -169,6 +180,8 @@ def main():
         min_stack.push(val)
         print(f"Pushed {val}, Stack: {min_stack}")
         print(f"Current minimum: {min_stack.get_min()}\n")
+
+    print(f"Sum of elements: {min_stack.get_sum()}\n")
     
     print("Popping elements:")
     while not min_stack.is_empty():
