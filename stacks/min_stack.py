@@ -179,7 +179,7 @@ def main():
     for val in test_values:
         min_stack.push(val)
         print(f"Pushed {val}, Stack: {min_stack}")
-        
+        print(f"Current minimum: {min_stack.get_min()}\n")
 
     print(f"Sum of elements: {min_stack.get_sum()}\n")
     
