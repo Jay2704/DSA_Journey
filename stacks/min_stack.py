@@ -103,3 +103,33 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# MinStack Implementation Analysis
+# ================================
+# 
+# APPROACH USED: Auxiliary Stack with Pairs
+# - Each element stored as tuple (element, minimum_so_far)
+# - element: actual value pushed
+# - minimum_so_far: minimum value seen up to that point
+#
+# TIME COMPLEXITY:
+# - push(val): O(1) - Single append with min comparison
+# - pop(): O(1) - Single pop operation  
+# - top(): O(1) - Direct access to last element
+# - get_min(): O(1) - Direct access to minimum from top tuple
+# - is_empty(): O(1) - Length check
+# - size(): O(1) - Length check
+# - get_sum(): O(N) - Iterates through all elements
+#
+# SPACE COMPLEXITY: O(2*N) where N is number of elements
+# - Each element stores both value and minimum (doubles storage)
+# - Alternative: O(N) space possible but with trade-offs
+#
+# KEY ADVANTAGES:
+# - O(1) minimum retrieval without scanning entire stack
+# - Simple implementation, easy to understand
+# - Consistent O(1) performance for core operations
+#
+# TRADE-OFFS:
+# - Higher space usage (2x compared to storing just values)
+# - Memory overhead from tuple storage
