@@ -5,7 +5,7 @@ def next_greater_element(nums):
     n = len(nums)
     stack = Stack()
     result = [-1] * n
-
+    
     # Process elements from right to left
     for i in range(n-1, -1, -1):
         # Pop elements from stack that are smaller than or equal to current element

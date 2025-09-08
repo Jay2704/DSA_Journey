@@ -105,12 +105,7 @@ def largest_rectangle_area_optimized(heights):
     stack = []
     max_area = 0
     
-    for i, height in enumerate(heights):
-        while stack and heights[stack[-1]] > height:
-            h = heights[stack.pop()]
-            w = i - stack[-1] - 1
-            max_area = max(max_area, h * w)
-        stack.append(i)
+    
     
     return max_area
 
