@@ -24,23 +24,7 @@ def largest_rectangle_area(heights):
     
     2. After processing all bars, handle remaining bars in stack
     
-    EXAMPLE: [2, 1, 5, 6, 2, 3]
-    - Bar 0 (height 2): stack = [0]
-    - Bar 1 (height 1): 1 < 2, so pop 0, area = 2*1 = 2, stack = [1]
-    - Bar 2 (height 5): stack = [1, 2]
-    - Bar 3 (height 6): stack = [1, 2, 3]
-    - Bar 4 (height 2): 2 < 6, pop 3, area = 6*1 = 6
-                      2 < 5, pop 2, area = 5*2 = 10
-                      stack = [1, 4]
-    - Bar 5 (height 3): stack = [1, 4, 5]
-    - Process remaining: pop 5, area = 3*1 = 3
-                        pop 4, area = 2*4 = 8
-                        pop 1, area = 1*6 = 6
-    - Max area = 10
-    
-    Time Complexity: O(n) - each element pushed and popped exactly once
-    Space Complexity: O(n) - stack can hold at most n elements
-    """
+
     if not heights:
         return 0
     
