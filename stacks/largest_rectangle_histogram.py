@@ -1,18 +1,6 @@
 def largest_rectangle_area(heights):
     """
-    Find the largest rectangle area in a histogram using monotonic stack.
-    
-    ALGORITHM EXPLANATION:
-    =====================
-    
-    Key Insight: For each bar, the largest rectangle with that bar as height
-    extends from the previous smaller bar to the next smaller bar.
-    
-    APPROACH: Monotonic Increasing Stack
-    - Maintain a stack of indices in increasing order of heights
-    - When we encounter a bar smaller than stack top, we can calculate
-      the area of rectangles with stack top as height
-    - The width of rectangle = current_index - previous_smaller_index - 1
+    ller_index - 1
     
     STEP-BY-STEP:
     1. For each bar at index i:
