@@ -1,4 +1,5 @@
 def solution1(height):
+    """Dynamic programming approach with precomputed left/right maxima."""
     n = len(height)
     if n <= 2:
         return 0
@@ -10,23 +11,27 @@ def solution1(height):
     left_max[0] = height[0]
     right_max[n-1] = height[n-1]
     
+    # Build running maximum when scanning from the left.
     for i in range(1,n):
         left_max[i] = max(left_max[i-1], height[i])
-        
+
+    # Build running maximum when scanning from the right.
     for j in range(n-2, -1, -1):
         right_max[j] = max(right_max[j+1], height[j])
-    
+
+    # Water above each bar is bounded by the smaller of both maxima.
     for k in range(n):
         water_trapped += min(left_max[k], right_max[k]) - height[k]
-        
+
     return water_trapped
 
 
 def solution2(height):
+    """Two-pointer approach keeping track of current boundary maxima."""
     n = len(height)
     if n <= 2:
         return 0
-    
+
     left = 0
     right = n - 1
     
@@ -38,12 +43,14 @@ def solution2(height):
     while left < right:
         if left_max < right_max:
             left += 1
+            # Update left boundary; trap water if current bar is shorter.
             if height[left] > left_max:
                 left_max = height[left]
             else:
                 water_trapped += left_max - height[left]
         else:
             right -= 1
+            # Update right boundary; trap water if current bar is shorter.
             if height[right] > right_max:
                 right_max = height[right]
             else:
