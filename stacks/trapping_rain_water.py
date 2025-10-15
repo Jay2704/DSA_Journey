@@ -1,4 +1,5 @@
 def solution1(height):
+    """Dynamic programming approach with precomputed left/right maxima."""
     n = len(height)
     if n <= 2:
         return 0
@@ -23,6 +24,7 @@ def solution1(height):
 
 
 def solution2(height):
+    """Two-pointer approach keeping track of current boundary maxima."""
     n = len(height)
     if n <= 2:
         return 0
