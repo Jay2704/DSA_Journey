@@ -20,7 +20,7 @@
 def solution1(height):
     """
     SOLUTION 1: Dynamic Programming Approach
-    
+    `
     ALGORITHM:
     1. Precompute left_max[i] = maximum height from left up to index i
     2. Precompute right_max[i] = maximum height from right up to index i
