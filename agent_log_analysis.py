@@ -22,6 +22,7 @@ import queue
 from dataclasses import dataclass
 from enum import Enum
 
+
 class Severity(Enum):
     """Enumeration for error severity levels"""
     CRITICAL = "CRITICAL"
