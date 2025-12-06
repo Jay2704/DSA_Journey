@@ -17,8 +17,8 @@
 # Time Complexity: Both O(n)
 # Space Complexity: Solution 1 = O(n), Solution 2 = O(1)
 
-def solution1(height):
-    """
+
+"""
     SOLUTION 1: Dynamic Programming Approach
     `
     ALGORITHM:
@@ -38,6 +38,7 @@ def solution1(height):
     right_max: [3,3,3,3,3,3,3,3,2,2,2,1]
     water:     [0,0,1,0,1,2,1,0,0,1,0,0] = 6 units
     """
+def solution1(height):
     n = len(height)
     
     # Edge case: Need at least 3 bars to trap water
@@ -73,8 +74,8 @@ def solution1(height):
     return water_trapped
 
 
-def solution2(height):
-    """
+
+"""
     SOLUTION 2: Two-Pointer Approach (Optimized Space)
     
     ALGORITHM:
@@ -102,6 +103,7 @@ def solution2(height):
     - O(1) space instead of O(n)
     - Single pass instead of three passes
     """
+def solution2(height):
     n = len(height)
     
     # Edge case: Need at least 3 bars to trap water
