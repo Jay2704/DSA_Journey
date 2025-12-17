@@ -5,18 +5,15 @@ def next_greater_element(nums):
     n = len(nums)
     stack = Stack()
     result = [-1] * n
-    
-    # Process elements from right to left
+
     for i in range(n-1, -1, -1):
-        # Pop elements from stack that are smaller than or equal to current element
+        
         while not stack.is_empty() and stack.peek() <= nums[i]:
             stack.pop()
         
-        # If stack is not empty, the top element is the next greater element
         if not stack.is_empty():
             result[i] = stack.peek()
         
-        # Push current element to stack
         stack.push(nums[i])
     
     return result
