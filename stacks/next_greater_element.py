@@ -1,22 +1,27 @@
 from stack import Stack
 
+# Function to find the next greater element for each element in the list.
 def next_greater_element(nums):
     
-    n = len(nums)
-    stack = Stack()
-    result = [-1] * n
+    n = len(nums)  # Get the length of the input list.
+    stack = Stack()  # Initialize a stack to keep track of elements.
+    result = [-1] * n  # Initialize the result list with -1 for all elements.
 
+    # Traverse the list in reverse order.
     for i in range(n-1, -1, -1):
         
+        # Remove elements from the stack that are less than or equal to the current element.
         while not stack.is_empty() and stack.peek() <= nums[i]:
             stack.pop()
         
+        # If the stack is not empty, the top of the stack is the next greater element.
         if not stack.is_empty():
             result[i] = stack.peek()
         
+        # Push the current element onto the stack.
         stack.push(nums[i])
     
-    return result
+    return result  # Return the list of next greater elements.
 
 
 def main():
@@ -56,4 +61,4 @@ def main():
     print(f"Passed {passed} out of {len(test_cases)} test cases.")
 
 if __name__ == "__main__":
-    main() 
+    main()
