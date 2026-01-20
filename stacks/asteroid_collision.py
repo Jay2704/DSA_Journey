@@ -17,28 +17,7 @@ def asteroid_collision(asteroids):
     """
 
     stack = []
-    for a in asteroids:
-        alive = True
-        # only possible collision when a < 0 and stack top > 0
-        while alive and stack and a < 0 and stack[-1] > 0:
-            if stack[-1] < -a:
-                # top of stack explodes; continue checking with next stack top
-                stack.pop()
-                continue
-            elif stack[-1] == -a:
-                # both explode
-                stack.pop()
-                alive = False
-                break
-            else:
-                # incoming asteroid explodes
-                alive = False
-                break
-
-        if alive:
-            stack.append(a)
-
-    return stack
+    pass
 
 
 # Main function to test the asteroid_collision function.
