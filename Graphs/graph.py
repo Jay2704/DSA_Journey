@@ -10,7 +10,6 @@ class Graph:
         self.directed = directed
         self._adj: Dict[Hashable, Dict[Hashable, float]] = {}
 
-    # --- mutation ---
     def add_vertex(self, vertex: Hashable) -> None:
         """Add a vertex if missing."""
         self._adj.setdefault(vertex, {})
