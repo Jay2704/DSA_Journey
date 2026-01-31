@@ -4,7 +4,6 @@ from typing import Dict, Hashable, Iterable, List, Optional, Set, Tuple
 
 
 class Graph:
-    """Adjacency‑list graph with optional direction and lightweight traversal helpers."""
 
     def __init__(self, directed: bool = False) -> None:
         self.directed = directed
