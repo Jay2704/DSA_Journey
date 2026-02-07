@@ -29,7 +29,7 @@ DSA_Journey/
 │   ├── rotate_array.py           # Rotate an array by k positions
 │   └── second_largest.py         # Find the second largest element
 │
-├── 📁 Binary_Trees/              # Basic BST implementations
+├── 📁 Binary_Trees/              # Basic BST 
 │   ├── BST.java                  # Java implementation of a Binary Search Tree
 │   └── bst.py                    # Python implementation of the same
 │
