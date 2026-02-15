@@ -1,6 +1,6 @@
 
 def asteroid_collision(asteroids):
-    """ asteroid collisions and return the state after all collisions.
+    """Simulate asteroid collisions and return the state after all collisions.
 
     Each asteroid is an integer where the absolute value represents its size
     and the sign represents its direction (positive = right, negative = left).
