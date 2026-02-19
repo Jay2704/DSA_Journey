@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![GitHub](https://img.shields.io/badge/GitHub-Jay2704-red.svg)](https://github.com/Jay2704)
 
- to **DSA Journey**, a comprehensive collection of Data Structures & Algorithms implemented in Python (and Java). This repository mirrors Striver's Recursion videos and covers core DSA topics, providing hands-on solutions for learning and reference.
+Welcome to **DSA Journey**, a comprehensive collection of Data Structures & Algorithms implemented in Python (and Java). This repository mirrors Striver's Recursion videos and covers core DSA topics, providing hands-on solutions for learning and reference.
 
 ## 📋 Table of Contents
 
