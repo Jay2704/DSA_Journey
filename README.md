@@ -27,31 +27,43 @@ DSA_Journey/
 │   ├── move_zeros.py             # Move zeros to the end of an array
 │   ├── remove_duplicates.py      # Remove duplicates from a sorted array
 │   ├── rotate_array.py           # Rotate an array by k positions
-│   └── second_largest.py         # Find the second largest element
+│   ├── second_largest.py         # Find the second largest element
+│   └── subtitle_convertor.py     # Convert subtitles to a specific format
 │
 ├── 📁 Binary_Trees/              # Basic BST 
 │   ├── BST.java                  # Java implementation of a Binary Search Tree
 │   └── bst.py                    # Python implementation of the same
 │
-├── 📁 recursion/                  # Solutions keyed to Striver recursion videos
+├── 📁 Graphs/                    # Graph-based problems
+│   ├── graph.py                  # Graph representation and traversal
+│   └── rotten_oranges.py         # Rotten oranges problem
+│
+├── 📁 recursion/                 # Solutions keyed to Striver recursion videos
 │   ├── v1.py                     # Video 1: Recursion intro & factorial
 │   ├── v2.py                     # Video 2: Fibonacci with recursion
 │   ├── v3.py                     # Video 3: Sum of digits & array sum
 │   ├── v4.py                     # Video 4: String recursion & palindrome
 │   ├── v5.py                     # Video 5: Backtracking subsets
 │   ├── v6.py                     # Video 6: Tree traversals (pre/in/post)
-│   └── v7.py                     # Video 7: Advanced backtracking (permutations)
+│   ├── v7.py                     # Video 7: Advanced backtracking (permutations)
+│   └── v8.py                     # Video 8: Additional recursion problems
 │
 ├── 📁 stacks/                    # Stack-based problems & utilities
+│   ├── asteroid_collision.py     # Asteroid collision problem
+│   ├── largest_rectangle_histogram.py # Largest rectangle in histogram
+│   ├── min_stack.py              # Stack with minimum retrieval
 │   ├── next_greater_element.py   # Next greater element in an array
 │   ├── stack.py                  # Simple stack class implementation
+│   ├── sum_of_aubarray_ranges.py # Sum of subarray ranges
+│   ├── sum_of_subarray_minimum.py # Sum of subarray minimums
+│   ├── trapping_rain_water.py    # Trapping rainwater problem
 │   └── valid_paranthesis.py      # Check for balanced parentheses
 │
 ├── 📄 README.md                  # Project overview & instructions
 └── 📄 LICENSE                    # MIT License
 ```
 
-> **Note**: In **recursion/**, `v1.py`–`v7.py` correspond to Striver's Recursion videos 1–7.
+> **Note**: In **recursion/**, `v1.py`–`v8.py` correspond to Striver's Recursion videos 1–8.
 
 ## 🎨 Visual Representations
 
@@ -168,10 +180,15 @@ Stack Operations:
 - ✅ Remove duplicates
 - ✅ Rotate array
 - ✅ Find second largest
+- ✅ Subtitle conversion
 
 ### Binary Trees
 - ✅ BST implementation (Python & Java)
 - ✅ Tree traversals
+
+### Graphs
+- ✅ Graph representation and traversal
+- ✅ Rotten oranges problem
 
 ### Recursion
 - ✅ Factorial calculation
@@ -180,11 +197,18 @@ Stack Operations:
 - ✅ String recursion
 - ✅ Backtracking (subsets, permutations)
 - ✅ Tree traversals
+- ✅ Additional recursion problems
 
 ### Stacks
 - ✅ Stack implementation
 - ✅ Valid parentheses
 - ✅ Next greater element
+- ✅ Asteroid collision
+- ✅ Largest rectangle in histogram
+- ✅ Stack with minimum retrieval
+- ✅ Sum of subarray ranges
+- ✅ Sum of subarray minimums
+- ✅ Trapping rainwater problem
 
 ## 💻 Usage
 
@@ -198,6 +222,10 @@ python3 stacks/valid_paranthesis.py
 
 # Example: Run next greater element
 python3 stacks/next_greater_element.py
+
+# Example: Run graph problems
+python3 Graphs/graph.py
+python3 Graphs/rotten_oranges.py
 ```
 
 ### Running Java Files
