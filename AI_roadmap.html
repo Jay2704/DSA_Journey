@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI/ML Engineer Roadmap 2025–2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #050810;
+    --surface: #0b0f1e;
+    --border: rgba(255,255,255,0.07);
+    --accent1: #00f5c4;
+    --accent2: #7b5ea7;
+    --accent3: #ff6b4a;
+    --accent4: #3b9eff;
+    --accent5: #f5c400;
+    --accent6: #ff4a8d;
+    --text: #e8eaf0;
+    --muted: #6b7280;
+    --card: rgba(255,255,255,0.035);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,245,196,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,245,196,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Glowing orbs */
+  body::after {
+    content: '';
+    position: fixed;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,245,196,0.06) 0%, transparent 70%);
+    top: -200px; left: -200px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .orb2 {
+    position: fixed;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(123,94,167,0.08) 0%, transparent 70%);
+    bottom: -100px; right: -100px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ========== HEADER ========== */
+  header {
+    position: relative;
+    z-index: 10;
+    padding: 60px 40px 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .badge {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--accent1);
+    border: 1px solid var(--accent1);
+    padding: 4px 14px;
+    border-radius: 2px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    animation: pulse-border 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse-border {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0,245,196,0); }
+    50% { box-shadow: 0 0 0 4px rgba(0,245,196,0.1); }
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.5) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  h1 span {
+    background: linear-gradient(135deg, var(--accent1), var(--accent4));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    margin-top: 16px;
+    color: var(--muted);
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+  }
+
+  .timeline-bar {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin: 32px auto 0;
+    max-width: 700px;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .timeline-seg {
+    flex: 1;
+    padding: 8px 4px;
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ========== MAIN ========== */
+  main {
+    position: relative;
+    z-index: 5;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* The vertical connector line */
+  .connector {
+    display: flex;
+    justify-content: center;
+    padding: 8px 0;
+  }
+
+  .connector-line {
+    width: 2px;
+    height: 40px;
+    background: linear-gradient(to bottom, transparent, var(--border), transparent);
+  }
+
+  /* ========== STAGE CARD ========== */
+  .stage {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+    cursor: pointer;
+  }
+
+  .stage:hover {
+    transform: translateY(-2px);
+  }
+
+  .stage-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px 28px;
+    position: relative;
+  }
+
+  .stage-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 28px; right: 28px;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .stage-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    min-width: 40px;
+  }
+
+  .stage-icon {
+    width: 44px; height: 44px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .stage-title-wrap { flex: 1; }
+
+  .stage-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: -0.3px;
+  }
+
+  .stage-subtitle {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 3px;
+    font-weight: 300;
+  }
+
+  .stage-duration {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    padding: 5px 12px;
+    border-radius: 2px;
+    border: 1px solid;
+    opacity: 0.8;
+    white-space: nowrap;
+  }
+
+  .chevron {
+    color: var(--muted);
+    font-size: 12px;
+    transition: transform 0.3s;
+    margin-left: 8px;
+  }
+
+  .stage.open .chevron { transform: rotate(180deg); }
+
+  /* Stage body */
+  .stage-body {
+    display: none;
+    padding: 28px;
+    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stage.open .stage-body {
+    display: grid;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* On mobile */
+  @media (max-width: 640px) {
+    .stage-body { grid-template-columns: 1fr; }
+  }
+
+  .section-block {
+    padding: 16px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: rgba(0,0,0,0.2);
+  }
+
+  .section-block.full { grid-column: 1 / -1; }
+
+  .block-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    opacity: 0.6;
+  }
+
+  .concept-list { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .tag {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 3px;
+    border: 1px solid;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+
+  .tag:hover { opacity: 0.7; }
+
+  .tool-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .tool-tag::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.6;
+    flex-shrink: 0;
+  }
+
+  .project-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: #c0c8d8;
+  }
+
+  .project-item::before {
+    content: '→';
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ========== STAGE COLOR THEMES ========== */
+  .s0 { --c: var(--accent1); }
+  .s1 { --c: var(--accent4); }
+  .s2 { --c: var(--accent2); }
+  .s3 { --c: var(--accent3); }
+  .s4 { --c: var(--accent5); }
+  .s5 { --c: var(--accent6); }
+  .s6 { --c: #a3e635; }
+
+  .stage { border-left: 3px solid transparent; }
+  .stage:hover, .stage.open { border-left-color: var(--c); }
+  .stage-icon { background: color-mix(in srgb, var(--c) 15%, transparent); }
+  .stage-title { color: var(--c); }
+  .stage-duration { color: var(--c); border-color: color-mix(in srgb, var(--c) 40%, transparent); }
+  .block-label { color: var(--c); }
+
+  .tag {
+    color: var(--c);
+    border-color: color-mix(in srgb, var(--c) 35%, transparent);
+    background: color-mix(in srgb, var(--c) 8%, transparent);
+  }
+
+  .tool-tag { color: color-mix(in srgb, var(--c) 80%, white); }
+  .tool-tag::before { background: var(--c); }
+
+  /* ========== SKILLS MATRIX ========== */
+  .skills-matrix {
+    margin-top: 48px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card);
+    overflow: hidden;
+  }
+
+  .matrix-header {
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .matrix-header h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .matrix-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--border);
+  }
+
+  .matrix-cell {
+    background: var(--bg);
+    padding: 18px 20px;
+  }
+
+  .matrix-cell-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .skill-bar {
+    height: 3px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.06);
+    margin-top: 12px;
+    overflow: hidden;
+  }
+
+  .skill-fill {
+    height: 100%;
+    border-radius: 2px;
+    animation: fillBar 1.5s ease forwards;
+    animation-delay: 0.5s;
+    width: 0;
+  }
+
+  @keyframes fillBar {
+    to { width: var(--pct); }
+  }
+
+  .importance-dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    margin-right: 4px;
+  }
+
+  .skill-name {
+    font-size: 12px;
+    color: #9ca3af;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 2px;
+  }
+
+  /* ========== TIMELINE ========== */
+  .timeline-section {
+    margin-top: 48px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card);
+    overflow: hidden;
+  }
+
+  .tl-header {
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tl-header h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .tl-row {
+    display: flex;
+    align-items: center;
+    padding: 14px 28px;
+    border-bottom: 1px solid var(--border);
+    gap: 20px;
+  }
+
+  .tl-row:last-child { border-bottom: none; }
+
+  .tl-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    min-width: 140px;
+  }
+
+  .tl-stage-name {
+    font-size: 13px;
+    font-weight: 500;
+    min-width: 200px;
+  }
+
+  .tl-bar-wrap {
+    flex: 1;
+    height: 8px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .tl-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    animation: fillBar 1.8s ease forwards;
+    animation-delay: 0.3s;
+    width: 0;
+  }
+
+  /* ========== FOOTER ========== */
+  footer {
+    position: relative; z-index: 5;
+    border-top: 1px solid var(--border);
+    padding: 28px 40px;
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  footer span { color: var(--accent1); }
+
+</style>
+</head>
+<body>
+<div class="orb2"></div>
+
+<!-- HEADER -->
+<header>
+  <div class="badge">↗ Engineer's Roadmap 2025–2026</div>
+  <h1>ML · AI · GenAI · LLM<br><span>Agentic AI</span></h1>
+  <p class="subtitle">A researcher & engineer's opinionated guide — from foundations to autonomous agents</p>
+  <div class="timeline-bar">
+    <div class="timeline-seg" style="background:rgba(0,245,196,0.08); color:var(--accent1)">Foundation<br>3 mo</div>
+    <div class="timeline-seg" style="background:rgba(59,158,255,0.08); color:var(--accent4)">Classical ML<br>3 mo</div>
+    <div class="timeline-seg" style="background:rgba(123,94,167,0.08); color:var(--accent2)">Deep Learning<br>3 mo</div>
+    <div class="timeline-seg" style="background:rgba(255,107,74,0.08); color:var(--accent3)">GenAI<br>2 mo</div>
+    <div class="timeline-seg" style="background:rgba(245,196,0,0.08); color:var(--accent5)">LLMs<br>3 mo</div>
+    <div class="timeline-seg" style="background:rgba(255,74,141,0.08); color:var(--accent6)">RAG<br>2 mo</div>
+    <div class="timeline-seg" style="background:rgba(163,230,53,0.08); color:#a3e635">Agents<br>∞</div>
+  </div>
+</header>
+
+<main>
+
+<!-- STAGE 0: FOUNDATIONS -->
+<div class="stage s0" onclick="toggle(this)">
+  <div class="stage-header">
+    <span class="stage-num">00</span>
+    <div class="stage-icon">🧱</div>
+    <div class="stage-title-wrap">
+      <div class="stage-title">Foundations</div>
+      <div class="stage-subtitle">Math, Stats & Python — the bedrock of everything</div>
+    </div>
+    <div class="stage-duration">2–3 months</div>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="stage-body">
+    <div class="section-block">
+      <div class="block-label">Mathematics</div>
+      <div class="concept-list">
+        <span class="tag">Linear Algebra</span>
+        <span class="tag">Matrices & SVD</span>
+        <span class="tag">Eigenvalues</span>
+        <span class="tag">Calculus & Gradients</span>
+        <span class="tag">Chain Rule</span>
+        <span class="tag">Partial Derivatives</span>
+        <span class="tag">Probability Theory</span>
+        <span class="tag">Bayes Theorem</span>
+        <span class="tag">MLE / MAP</span>
+        <span class="tag">Information Theory</span>
+        <span class="tag">KL Divergence</span>
+        <span class="tag">Entropy</span>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-label">Python & Tools</div>
+      <div class="concept-list">
+        <span class="tool-tag">Python 3.11+</span>
+        <span class="tool-tag">NumPy</span>
+        <span class="tool-tag">Pandas</span>
+        <span class="tool-tag">Matplotlib</span>
+        <span class="tool-tag">Seaborn</span>
+        <span class="tool-tag">Jupyter</span>
+        <span class="tool-tag">SQL</span>
+        <span class="tool-tag">Git & GitHub</span>
+        <span class="tool-tag">Linux CLI</span>
+        <span class="tool-tag">Docker basics</span>
+      </div>
+    </div>
+    <div class="section-block full">
+      <div class="block-label">Starter Projects</div>
+      <div class="project-item">Implement gradient descent from scratch on a linear regression problem</div>
+      <div class="project-item">EDA pipeline on a Kaggle dataset with visualization & statistical insights</div>
+      <div class="project-item">Build a probability simulator: Bayesian A/B testing with matplotlib</div>
+    </div>
+  </div>
+</div>
+
+<div class="connector"><div class="connector-line"></div></div>
+
+<!-- STAGE 1: CLASSICAL ML -->
+<div class="stage s1" onclick="toggle(this)">
+  <div class="stage-header">
+    <span class="stage-num">01</span>
+    <div class="stage-icon">📊</div>
+    <div class="stage-title-wrap">
+      <div class="stage-title">Classical Machine Learning</div>
+      <div class="stage-subtitle">Supervised, Unsupervised & model fundamentals</div>
+    </div>
+    <div class="stage-duration">2–3 months</div>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="stage-body">
+    <div class="section-block">
+      <div class="block-label">Core Algorithms</div>
+      <div class="concept-list">
+        <span class="tag">Linear Regression</span>
+        <span class="tag">Logistic Regression</span>
+        <span class="tag">Decision Trees</span>
+        <span class="tag">Random Forests</span>
+        <span class="tag">SVM</span>
+        <span class="tag">K-Means</span>
+        <span class="tag">DBSCAN</span>
+        <span class="tag">PCA / t-SNE</span>
+        <span class="tag">Naive Bayes</span>
+        <span class="tag">KNN</span>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-label">Boosting & Tuning</div>
+      <div class="concept-list">
+        <span class="tag">XGBoost</span>
+        <span class="tag">LightGBM</span>
+        <span class="tag">CatBoost</span>
+        <span class="tag">Bias-Variance Tradeoff</span>
+        <span class="tag">Cross-Validation</span>
+        <span class="tag">Regularization L1/L2</span>
+        <span class="tag">Feature Engineering</span>
+        <span class="tag">Hyperparameter Tuning</span>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-label">Libraries</div>
+      <div class="concept-list">
+        <span class="tool-tag">scikit-learn</span>
+        <span class="tool-tag">XGBoost</span>
+        <span class="tool-tag">LightGBM</span>
+        <span class="tool-tag">Optuna</span>
+        <span class="tool-tag">SHAP</span>
+        <span class="tool-tag">imbalanced-learn</span>
+        <span class="tool-tag">feature-engine</span>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-label">Evaluation Metrics</div>
+      <div class="concept-list">
+        <span class="tag">AUC-ROC</span>
+        <span class="tag">F1 / Precision / Recall</span>
+        <span class="tag">RMSE / MAE</span>
+        <span class="tag">Confusion Matrix</span>
+        <span class="tag">Silhouette Score</span>
+      </div>
+    </div>
+    <div class="section-block full">
+      <div class="block-label">Projects</div>
+      <div class="project-item">Kaggle tabular competition end-to-end with full feature engineering pipeline</div>
+      <div class="project-item">Customer churn prediction with SHAP explainability dashboard</div>
+      <div class="project-item">Anomaly detection system using unsupervised clustering</div>
+    </div>
+  </div>
+</div>
+
+<div class="connector"><div class="connector-line"></div></div>
+
+<!-- STAGE 2: DEEP LEARNING -->
+<div class="stage s2" onclick="toggle(this)">
+  <div class="stage-header">
+    <span class="stage-num">02</span>
+    <div class="stage-icon">🧠</div>
+    <div class="stage-title-wrap">
+      <div class="stage-title">Deep Learning</div>
+      <div class="stage-subtitle">Neural networks, CNNs, RNNs & attention mechanism</div>
+    </div>
+    <div class="stage-duration">2–3 months</div>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="stage-body">
+    <div class="section-block">
+      <div class="block-label">Architecture Concepts</div>
+      <div class="concept-list">
+        <span class="tag">Feedforward NN</span>
+        <span class="tag">Backpropagation</span>
+        <span class="tag">Activation Functions</span>
+        <span class="tag">Batch Normalization</span>
+        <span class="tag">Dropout & Regularization</span>
+        <span class="tag">CNNs</span>
+        <span class="tag">RNNs / LSTMs</span>
+        <span class="tag">Attention Mechanism</span>
+        <span class="tag">Transformers Intro</span>
+        <span class="tag">Learning Rate Schedules</span>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-label">Frameworks</div>
+      <div class="concept-list">
+        <span class="tool-tag">PyTorch ⭐</span>
+        <span class="tool-tag">TensorFlow / Keras</span>
+        <span class="tool-tag">JAX (optional)</span>
+        <span class="tool-tag">CUDA basics</span>
+        <span class="tool-tag">torchvision</span>
+        <span class="tool-tag">torchaudio</span>
+        <span class="tool-tag">Lightning</span>
+        <span class="tool-tag">timm</span>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-label">Experiment Tracking</div>
+      <div class="concept-list">
+        <span class="tool-tag">Weights & Biases</span>
+        <span class="tool-tag">MLflow</span>
+        <span class="tool-tag">DVC</span>
+        <span class="tool-tag">TensorBoard</span>
+        <span class="tool-tag">Hydra configs</span>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-label">Karpathy's Curriculum</div>
+      <div class="concept-list">
+        <span class="tag">micrograd from scratch</span>
+        <span class="tag">makemore bigram</span>
+        <span class="tag">MLP language model</span>
+        <span class="tag">Build GPT from scratch</span>
+      </div>
+    </div>
+    <div class="section-block full">
+      <div class="block-label">Projects</div>
+      <div class="project-item">Image classifier on custom dataset (ResNet, EfficientNet fine-tune)</div>
+      <div class="project-item">Time-series forecasting with LSTMs + attention</div>
+      <div class="project-item">Build a character-level language model from scratch (Karpathy style)</div>
+    </div>
+  </div>
+</div>
+
+<div class="connector"><div class="connector-line"></div></div>
+
+<!-- STAGE 3: GENERATIVE AI -->
+<div class="stage s3" onclick="toggle(this)">
+  <div class="stage-header">
+    <span class="stage-num">03</span>
+    <div class="stage-icon">✨</div>
+    <div class="stage-title-wrap">
+      <div class="stage-title">Generative AI</div>
+      <div class="stage-subtitle">VAEs, GANs, Diffusion Models & multimodal generation</div>
+    </div>
+    <div class="stage-duration">1–2 months</div>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="stage-body">
+    <div class="section-block">
+      <div class="block-label">Generative Architectures</div>
+      <div class="concept-list">
+        <span class="tag">Autoencoders</span>
+        <span class="tag">VAEs</span>
+        <span class="tag">GANs (DCGAN, StyleGAN)</span>
+        <span class="tag">Normalizing Flows</span>
+        <span class="tag">Diffusion Models (DDPM)</span>
+        <span class="tag">Score-Based Models</span>
+        <span class="tag">CLIP & BLIP</span>
+        <span class="tag">Multimodal Fusion</span>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-label">Tools & Platforms</div>
+      <div class="concept-list">
+        <span class="tool-tag">HuggingFace Diffusers</span>
+        <span class="tool-tag">Stable Diffusion</span>
+        <span class="tool-tag">ComfyUI</span>
+        <span class="tool-tag">ControlNet</span>
+        <span class="tool-tag">OpenAI DALL-E API</span>
+        <span class="tool-tag">Replicate</span>
+        <span class="tool-tag">RunPod</span>
+      </div>
+    </div>
+    <div class="section-block full">
+      <div class="block-label">Projects</div>
+      <div class="project-item">Train a custom LoRA on Stable Diffusion for a specific style or subject</div>
+      <div class="project-item">Image-to-image pipeline with ControlNet for pose/structure guided generation</div>
+      <div class="project-item">Synthetic data generation for ML training augmentation</div>
+    </div>
+  </div>
+</div>
+
+<div class="connector"><div class="connector-line"></div></div>
+
+<!-- STAGE 4: LLMs -->
+<div class="stage s4" onclick="toggle(this)">
+  <div class="stage-header">
+    <span class="stage-num">04</span>
+    <div class="stage-icon">🤖</div>
+    <div class="stage-title-wrap">
+      <div class="stage-title">Large Language Models</div>
+      <div class="stage-subtitle">Transformers deep dive, fine-tuning, RLHF & deployment</div>
+    </div>
+    <div class="stage-duration">2–3 months</div>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="stage-body">
+    <div class="section-block">
+      <div class="block-label">Architecture & Theory</div>
+      <div class="concept-list">
+        <span class="tag">Transformer Architecture</span>
+        <span class="tag">Multi-Head Attention</span>
+        <span class="tag">Positional Encodings</span>
+        <span class="tag">KV-Cache</span>
+        <span class="tag">Tokenization (BPE)</span>
+        <span class="tag">Context Windows</span>
+        <span class="tag">Mixture of Experts</span>
+        <span class="tag">Flash Attention</span>
+        <span class="tag">RoPE / ALiBi</span>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-label">Training Paradigms</div>
+      <div class="concept-list">
+        <span class="tag">Pre-training</span>
+        <span class="tag">Instruction Tuning (SFT)</span>
+        <span class="tag">RLHF</span>
+        <span class="tag">DPO / PPO</span>
+        <span class="tag">Constitutional AI</span>
+        <span class="tag">LoRA / QLoRA</span>
+        <span class="tag">PEFT</span>
+        <span class="tag">Quantization INT4/INT8</span>
+        <span class="tag">Knowledge Distillation</span>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-label">Open-Source Models</div>
+      <div class="concept-list">
+        <span class="tag">LLaMA 3</span>
+        <span class="tag">Mistral / Mixtral</span>
+        <span class="tag">DeepSeek R2</span>
+        <span class="tag">Qwen 2.5</span>
+        <span class="tag">Phi-4</span>
+        <span class="tag">Gemma 3</span>
+        <span class="tag">Command R+</span>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-label">Fine-tuning & Inference</div>
+      <div class="concept-list">
+        <span class="tool-tag">HuggingFace Transformers</span>
+        <span class="tool-tag">PEFT</span>
+        <span class="tool-tag">TRL</span>
+        <span class="tool-tag">Unsloth ⭐</span>
+        <span class="tool-tag">Axolotl</span>
+        <span class="tool-tag">LLaMA-Factory</span>
+        <span class="tool-tag">vLLM</span>
+        <span class="tool-tag">TGI</span>
+        <span class="tool-tag">Ollama</span>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-label">Prompt Engineering</div>
+      <div class="concept-list">
+        <span class="tag">Zero-shot / Few-shot</span>
+        <span class="tag">Chain-of-Thought (CoT)</span>
+        <span class="tag">Tree of Thought</span>
+        <span class="tag">ReAct</span>
+        <span class="tag">Structured Outputs</span>
+        <span class="tag">System Prompts</span>
+        <span class="tag">XML Tagging</span>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-label">Evaluation & Benchmarks</div>
+      <div class="concept-list">
+        <span class="tool-tag">MMLU</span>
+        <span class="tool-tag">HumanEval</span>
+        <span class="tool-tag">HellaSwag</span>
+        <span class="tool-tag">lm-eval-harness</span>
+        <span class="tool-tag">DeepEval</span>
+        <span class="tool-tag">RAGAS</span>
+        <span class="tool-tag">MT-Bench</span>
+      </div>
+    </div>
+    <div class="section-block full">
+      <div class="block-label">Must-Read Papers</div>
+      <div class="concept-list">
+        <span class="tag">Attention Is All You Need</span>
+        <span class="tag">LoRA (Hu et al.)</span>
+        <span class="tag">InstructGPT</span>
+        <span class="tag">Scaling Laws</span>
+        <span class="tag">Flash Attention</span>
+        <span class="tag">Constitutional AI</span>
+        <span class="tag">DPO paper</span>
+      </div>
+    </div>
+    <div class="section-block full">
+      <div class="block-label">Projects</div>
+      <div class="project-item">Fine-tune LLaMA 3 / Mistral on domain-specific dataset using QLoRA + Unsloth</div>
+      <div class="project-item">Build a custom model evaluator with automated benchmarks using DeepEval</div>
+      <div class="project-item">Deploy a quantized LLM via vLLM + FastAPI with streaming responses</div>
+    </div>
+  </div>
+</div>
+
+<div class="connector"><div class="connector-line"></div></div>
+
+<!-- STAGE 5: RAG -->
+<div class="stage s5" onclick="toggle(this)">
+  <div class="stage-header">
+    <span class="stage-num">05</span>
+    <div class="stage-icon">🔍</div>
+    <div class="stage-title-wrap">
+      <div class="stage-title">RAG & LLM Application Layer</div>
+      <div class="stage-subtitle">Vector search, retrieval pipelines & production LLM apps</div>
+    </div>
+    <div class="stage-duration">1–2 months</div>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="stage-body">
+    <div class="section-block">
+      <div class="block-label">RAG Architectures</div>
+      <div class="concept-list">
+        <span class="tag">Naive RAG</span>
+        <span class="tag">Advanced RAG</span>
+        <span class="tag">Modular RAG</span>
+        <span class="tag">HyDE</span>
+        <span class="tag">RAPTOR</span>
+        <span class="tag">Chunking Strategies</span>
+        <span class="tag">Semantic Chunking</span>
+        <span class="tag">Hybrid Search</span>
+        <span class="tag">Reranking</span>
+        <span class="tag">Parent-Child Retrieval</span>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-label">Vector Databases</div>
+      <div class="concept-list">
+        <span class="tool-tag">Pinecone</span>
+        <span class="tool-tag">Qdrant ⭐</span>
+        <span class="tool-tag">Weaviate</span>
+        <span class="tool-tag">ChromaDB</span>
+        <span class="tool-tag">pgvector</span>
+        <span class="tool-tag">Milvus</span>
+        <span class="tool-tag">OpenSearch</span>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-label">Embedding Models</div>
+      <div class="concept-list">
+        <span class="tool-tag">OpenAI text-embedding-3</span>
+        <span class="tool-tag">BGE-M3</span>
+        <span class="tool-tag">E5-large</span>
+        <span class="tool-tag">Cohere Embed</span>
+        <span class="tool-tag">Nomic Atlas</span>
+        <span class="tool-tag">Voyage AI</span>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-label">Orchestration</div>
+      <div class="concept-list">
+        <span class="tool-tag">LangChain</span>
+        <span class="tool-tag">LlamaIndex ⭐</span>
+        <span class="tool-tag">Haystack</span>
+        <span class="tool-tag">DSPy</span>
+        <span class="tool-tag">Instructor</span>
+        <span class="tool-tag">Outlines</span>
+      </div>
+    </div>
+    <div class="section-block full">
+      <div class="block-label">Projects</div>
+      <div class="project-item">Production-grade RAG chatbot over PDF corpus with hybrid search + reranking</div>
+      <div class="project-item">Multi-document research assistant with citations and source verification</div>
+      <div class="project-item">Structured data extraction pipeline from unstructured docs using Instructor</div>
+    </div>
+  </div>
+</div>
+
+<div class="connector"><div class="connector-line"></div></div>
+
+<!-- STAGE 6: AGENTIC AI -->
+<div class="stage s6" onclick="toggle(this)">
+  <div class="stage-header">
+    <span class="stage-num">06</span>
+    <div class="stage-icon">⚡</div>
+    <div class="stage-title-wrap">
+      <div class="stage-title">Agentic AI</div>
+      <div class="stage-subtitle">Autonomous agents, multi-agent systems & tool use — the frontier</div>
+    </div>
+    <div class="stage-duration">Ongoing ∞</div>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="stage-body">
+    <div class="section-block">
+      <div class="block-label">Agent Fundamentals</div>
+      <div class="concept-list">
+        <span class="tag">Perceive → Plan → Act Loop</span>
+        <span class="tag">Tool Use & Function Calling</span>
+        <span class="tag">ReAct Pattern</span>
+        <span class="tag">Reflection & Self-Critique</span>
+        <span class="tag">Tree-of-Thought</span>
+        <span class="tag">MCTS Planning</span>
+        <span class="tag">Memory Types</span>
+        <span class="tag">Short-term Context</span>
+        <span class="tag">Long-term Vector Memory</span>
+        <span class="tag">Episodic Memory</span>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-label">Agent Frameworks</div>
+      <div class="concept-list">
+        <span class="tool-tag">LangGraph ⭐</span>
+        <span class="tool-tag">CrewAI</span>
+        <span class="tool-tag">AutoGen</span>
+        <span class="tool-tag">OpenAI Agents SDK</span>
+        <span class="tool-tag">smolagents (HF)</span>
+        <span class="tool-tag">Pydantic AI</span>
+        <span class="tool-tag">Agno</span>
+        <span class="tool-tag">Mastra</span>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-label">Infrastructure & Tools</div>
+      <div class="concept-list">
+        <span class="tool-tag">MCP (Model Context Protocol) ⭐</span>
+        <span class="tool-tag">E2B sandboxes</span>
+        <span class="tool-tag">BrowserBase</span>
+        <span class="tool-tag">Playwright</span>
+        <span class="tool-tag">Composio</span>
+        <span class="tool-tag">Daytona</span>
+        <span class="tool-tag">Tavily Search API</span>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-label">Multi-Agent Patterns</div>
+      <div class="concept-list">
+        <span class="tag">Orchestrator-Subagent</span>
+        <span class="tag">Supervisor Pattern</span>
+        <span class="tag">Peer Collaboration</span>
+        <span class="tag">Parallel Agent Execution</span>
+        <span class="tag">Handoff Protocols</span>
+        <span class="tag">Agent-as-Tool</span>
+        <span class="tag">Human-in-the-Loop</span>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-label">Observability & Evals</div>
+      <div class="concept-list">
+        <span class="tool-tag">Langfuse ⭐</span>
+        <span class="tool-tag">Arize Phoenix</span>
+        <span class="tool-tag">AgentBench</span>
+        <span class="tool-tag">τ-bench</span>
+        <span class="tool-tag">DeepEval</span>
+        <span class="tool-tag">Helicone</span>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-label">Safety & Guardrails</div>
+      <div class="concept-list">
+        <span class="tag">Prompt Injection Defense</span>
+        <span class="tag">Output Validation (Pydantic)</span>
+        <span class="tag">Guardrails AI</span>
+        <span class="tag">Red-Teaming</span>
+        <span class="tag">Rate Limiting</span>
+        <span class="tag">Sandboxed Execution</span>
+      </div>
+    </div>
+    <div class="section-block full">
+      <div class="block-label">Projects</div>
+      <div class="project-item">Autonomous coding agent with code execution, test running & self-debugging (LangGraph + E2B)</div>
+      <div class="project-item">Multi-agent research system: planner → researcher → writer → critic agents with supervisor</div>
+      <div class="project-item">Computer-use agent with browser automation, form filling & data extraction pipeline</div>
+      <div class="project-item">Build your own MCP server exposing internal tools/APIs to any LLM client</div>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS MATRIX -->
+<div class="skills-matrix">
+  <div class="matrix-header">
+    <span style="font-size:18px">📈</span>
+    <h2 style="font-family:'Syne',sans-serif;">Core Tech Skills Matrix</h2>
+    <span style="color:var(--muted);font-size:12px;margin-left:auto">Importance for 2025/2026 market</span>
+  </div>
+  <div class="matrix-grid">
+
+    <div class="matrix-cell">
+      <div class="matrix-cell-title">Python</div>
+      <div class="skill-name"><span class="importance-dot" style="background:var(--accent1)"></span>Must-Have</div>
+      <div class="skill-bar"><div class="skill-fill" style="--pct:99%;background:var(--accent1)"></div></div>
+    </div>
+    <div class="matrix-cell">
+      <div class="matrix-cell-title">PyTorch</div>
+      <div class="skill-name"><span class="importance-dot" style="background:var(--accent1)"></span>Must-Have</div>
+      <div class="skill-bar"><div class="skill-fill" style="--pct:95%;background:var(--accent1)"></div></div>
+    </div>
+    <div class="matrix-cell">
+      <div class="matrix-cell-title">HuggingFace</div>
+      <div class="skill-name"><span class="importance-dot" style="background:var(--accent1)"></span>Must-Have</div>
+      <div class="skill-bar"><div class="skill-fill" style="--pct:93%;background:var(--accent1)"></div></div>
+    </div>
+    <div class="matrix-cell">
+      <div class="matrix-cell-title">LangGraph / LangChain</div>
+      <div class="skill-name"><span class="importance-dot" style="background:var(--accent4)"></span>High Value</div>
+      <div class="skill-bar"><div class="skill-fill" style="--pct:88%;background:var(--accent4)"></div></div>
+    </div>
+    <div class="matrix-cell">
+      <div class="matrix-cell-title">SQL & Data Wrangling</div>
+      <div class="skill-name"><span class="importance-dot" style="background:var(--accent1)"></span>Must-Have</div>
+      <div class="skill-bar"><div class="skill-fill" style="--pct:90%;background:var(--accent1)"></div></div>
+    </div>
+    <div class="matrix-cell">
+      <div class="matrix-cell-title">Docker & MLOps</div>
+      <div class="skill-name"><span class="importance-dot" style="background:var(--accent4)"></span>High Value</div>
+      <div class="skill-bar"><div class="skill-fill" style="--pct:82%;background:var(--accent4)"></div></div>
+    </div>
+    <div class="matrix-cell">
+      <div class="matrix-cell-title">Vector DBs</div>
+      <div class="skill-name"><span class="importance-dot" style="background:var(--accent4)"></span>High Value</div>
+      <div class="skill-bar"><div class="skill-fill" style="--pct:85%;background:var(--accent4)"></div></div>
+    </div>
+    <div class="matrix-cell">
+      <div class="matrix-cell-title">vLLM / Serving</div>
+      <div class="skill-name"><span class="importance-dot" style="background:var(--accent4)"></span>High Value</div>
+      <div class="skill-bar"><div class="skill-fill" style="--pct:80%;background:var(--accent4)"></div></div>
+    </div>
+    <div class="matrix-cell">
+      <div class="matrix-cell-title">MCP Protocol</div>
+      <div class="skill-name"><span class="importance-dot" style="background:var(--accent3)"></span>Emerging ⬆</div>
+      <div class="skill-bar"><div class="skill-fill" style="--pct:78%;background:var(--accent3)"></div></div>
+    </div>
+    <div class="matrix-cell">
+      <div class="matrix-cell-title">Cloud (AWS/GCP)</div>
+      <div class="skill-name"><span class="importance-dot" style="background:var(--accent4)"></span>High Value</div>
+      <div class="skill-bar"><div class="skill-fill" style="--pct:76%;background:var(--accent4)"></div></div>
+    </div>
+    <div class="matrix-cell">
+      <div class="matrix-cell-title">FastAPI</div>
+      <div class="skill-name"><span class="importance-dot" style="background:var(--accent1)"></span>Must-Have</div>
+      <div class="skill-bar"><div class="skill-fill" style="--pct:87%;background:var(--accent1)"></div></div>
+    </div>
+    <div class="matrix-cell">
+      <div class="matrix-cell-title">JAX / Triton</div>
+      <div class="skill-name"><span class="importance-dot" style="background:var(--accent2)"></span>Research+</div>
+      <div class="skill-bar"><div class="skill-fill" style="--pct:55%;background:var(--accent2)"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<div class="timeline-section">
+  <div class="tl-header">
+    <h2>⏱ Realistic Learning Timeline</h2>
+  </div>
+  <div class="tl-row">
+    <div class="tl-label">Months 1–3</div>
+    <div class="tl-stage-name" style="color:var(--accent1)">Foundations + Classical ML</div>
+    <div class="tl-bar-wrap"><div class="tl-bar-fill" style="--pct:30%;background:var(--accent1)"></div></div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-label">Months 3–6</div>
+    <div class="tl-stage-name" style="color:var(--accent4)">Deep Learning</div>
+    <div class="tl-bar-wrap"><div class="tl-bar-fill" style="--pct:55%;background:var(--accent4)"></div></div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-label">Months 6–8</div>
+    <div class="tl-stage-name" style="color:var(--accent3)">Generative AI</div>
+    <div class="tl-bar-wrap"><div class="tl-bar-fill" style="--pct:65%;background:var(--accent3)"></div></div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-label">Months 8–11</div>
+    <div class="tl-stage-name" style="color:var(--accent5)">LLMs & Fine-tuning</div>
+    <div class="tl-bar-wrap"><div class="tl-bar-fill" style="--pct:80%;background:var(--accent5)"></div></div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-label">Months 11–13</div>
+    <div class="tl-stage-name" style="color:var(--accent6)">RAG & LLM Apps</div>
+    <div class="tl-bar-wrap"><div class="tl-bar-fill" style="--pct:88%;background:var(--accent6)"></div></div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-label">Month 13+</div>
+    <div class="tl-stage-name" style="color:#a3e635">Agentic AI (never stops)</div>
+    <div class="tl-bar-wrap"><div class="tl-bar-fill" style="--pct:100%;background:#a3e635"></div></div>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <span>⭐</span> = Highest priority for 2025–2026 · Build in public · Ship projects on GitHub · The field moves fast — stay curious
+</footer>
+
+<script>
+  function toggle(el) {
+    el.classList.toggle('open');
+  }
+
+  // Auto-open first stage on load for demo
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('.stage').classList.add('open');
+  });
+
+  // Animate skill bars when they enter viewport
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.skill-fill, .tl-bar-fill').forEach(bar => {
+          bar.style.animationPlayState = 'running';
+        });
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.skills-matrix, .timeline-section').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
