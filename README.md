@@ -35,8 +35,11 @@ DSA_Journey/
 │   └── bst.py                    # Python implementation of the same
 │
 ├── 📁 Graphs/                    # Graph-based problems
-│   ├── graph.py                  # Graph representation and traversal
-│   └── rotten_oranges.py         # Rotten oranges problem
+│   ├── graph.py                  # Adjacency-list graph class
+│   ├── bfs_traversal.py          # Breadth-First Search traversal
+│   ├── dfs_traversal.py          # Depth-First Search traversal
+│   ├── number_of_provinces.py    # Connected components in matrix graph
+│   └── rotten_oranges.py         # Multi-source BFS (rotting oranges)
 │
 ├── 📁 recursion/                 # Solutions keyed to Striver recursion videos
 │   ├── v1.py                     # Video 1: Recursion intro & factorial
@@ -187,7 +190,10 @@ Stack Operations:
 - ✅ Tree traversals
 
 ### Graphs
-- ✅ Graph representation and traversal
+- ✅ Graph class with adjacency list
+- ✅ BFS traversal
+- ✅ DFS traversal
+- ✅ Number of provinces
 - ✅ Rotten oranges problem
 
 ### Recursion
@@ -225,6 +231,9 @@ python3 stacks/next_greater_element.py
 
 # Example: Run graph problems
 python3 Graphs/graph.py
+python3 Graphs/bfs_traversal.py
+python3 Graphs/dfs_traversal.py
+python3 Graphs/number_of_provinces.py
 python3 Graphs/rotten_oranges.py
 ```
 
