@@ -22,7 +22,7 @@ Welcome to **DSA Journey**, a comprehensive collection of Data Structures & Algo
 DSA_Journey/
 ├── 📁 arrays/                    # Classic array problems
 │   ├── check_sorted.py           # Check if an array is sorted
-│   ├── largest_number.py         # Find the largest number in an array
+│   ├── largest_number.py           # Find the largest number in an array
 │   ├── missing_element.py        # Find the missing element in 1…N
 │   ├── move_zeros.py             # Move zeros to the end of an array
 │   ├── remove_duplicates.py      # Remove duplicates from a sorted array
