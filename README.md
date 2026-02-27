@@ -185,7 +185,9 @@ Stack Operations:
 - ✅ Find second largest
 - ✅ Subtitle conversion
 
-
+### Binary Trees
+- ✅ BST implementation (Python & Java)
+- ✅ Tree traversals
 
 ### Graphs
 - ✅ Graph class with adjacency list
