@@ -189,7 +189,12 @@ Stack Operations:
 - ✅ BST implementation (Python & Java)
 - ✅ Tree traversals
 
-
+### Graphs
+- ✅ Graph class with adjacency list
+- ✅ BFS traversal
+- ✅ DFS traversal
+- ✅ Number of provinces
+- ✅ Rotten oranges problem
 
 ### Recursion
 - ✅ Factorial calculation
