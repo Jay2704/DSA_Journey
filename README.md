@@ -196,14 +196,7 @@ Stack Operations:
 - ✅ Number of provinces
 - ✅ Rotten oranges problem
 
-### Recursion
-- ✅ Factorial calculation
-- ✅ Fibonacci series
-- ✅ Sum of digits
-- ✅ String recursion
-- ✅ Backtracking (subsets, permutations)
-- ✅ Tree traversals
-- ✅ Additional recursion problems
+
 
 ### Stacks
 - ✅ Stack implementation
