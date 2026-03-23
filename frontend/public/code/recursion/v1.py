@@ -1,0 +1,16 @@
+# initialize the count to zero.
+cnt = 0
+
+def function():
+    global cnt
+    if cnt == 3:
+        return
+    cnt += 1
+    print(cnt)
+    function() #recursive function call
+
+if __name__ == "__main__":
+    # call function
+    function()
+
+

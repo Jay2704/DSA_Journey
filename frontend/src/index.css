@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0a1628;
+  --color-royal: #2563eb;
+  --color-royal-deep: #1d4ed8;
+  --shadow-card: 0 1px 2px rgb(15 23 42 / 0.04), 0 4px 12px rgb(15 23 42 / 0.06);
+  --shadow-card-hover: 0 4px 12px rgb(15 23 42 / 0.08);
+  --shadow-nav: 0 1px 0 rgb(15 23 42 / 0.06);
+  --shadow-dock: 0 -4px 24px rgb(15 23 42 / 0.08);
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  @apply min-h-dvh bg-slate-50 text-[#0a1628] antialiased;
+}
+
+.dashboard-card {
+  @apply transition duration-200 ease-out;
+}
+
+#root {
+  @apply min-h-dvh;
+}
+
+.ui-focus-ring:focus-visible {
+  @apply outline-none ring-2 ring-[#2563eb]/25 ring-offset-2 ring-offset-white;
+}
+
+/* Shiki output inside code viewer */
+.shiki-code {
+  @apply min-w-0 text-[13px] leading-[1.625] sm:text-sm;
+}
+
+.shiki-code pre {
+  @apply m-0 max-w-full min-w-0 overflow-x-auto bg-transparent p-0;
+}
+
+.shiki-code code {
+  @apply font-mono;
+}

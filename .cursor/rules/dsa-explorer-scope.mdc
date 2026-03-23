@@ -1,0 +1,28 @@
+---
+description: Product scope — personal DSA learning explorer; no auth, contests, or backend
+alwaysApply: true
+---
+
+# DSA Journey Explorer — product scope
+
+This app is a **personal DSA learning explorer** built from a **repo of code files** (static data + file reading). Keep the stack **simple and maintainable**.
+
+## Do not add
+
+- Authentication or user accounts
+- Leaderboards, contests, or competitive features
+- Online compiler, run/submission engines, or code execution servers
+- Discussion forums or social features
+- New backends, databases, or heavy server complexity “for scale”
+
+## Do focus on
+
+- Topic and file browsing
+- Reading and presenting code (syntax highlighting, paths, navigation)
+- **Lightweight** progress visualization (e.g. local/mock data, tags, simple stats derived from the snapshot)
+- Learning UX: search, filters, layout, clarity, accessibility
+
+## Implementation stance
+
+- Prefer static generation, client-side state, and reading files from the repo when appropriate.
+- When suggesting features, ask whether they fit the scope above; if not, decline or offer a minimal alternative.

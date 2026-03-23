@@ -62,11 +62,25 @@ DSA_Journey/
 │   ├── trapping_rain_water.py    # Trapping rainwater problem
 │   └── valid_paranthesis.py      # Check for balanced parentheses
 │
+├── 📁 frontend/                  # DSA Journey Explorer — React + Vite app (UI for this repo)
 ├── 📄 README.md                  # Project overview & instructions
 └── 📄 LICENSE                    # MIT License
 ```
 
 > **Note**: In **recursion/**, `v1.py`–`v8.py` correspond to Striver's Recursion videos 1–8.
+
+### DSA Journey Explorer (frontend)
+
+The web app lives in **`frontend/`**. Use **npm commands from the repo root** (or `cd frontend` and run the same scripts there).
+
+```bash
+npm install --prefix frontend   # once, to install JS dependencies
+npm run dev                     # http://localhost:5173/
+npm run build                   # writes frontend/dist/
+npm run deploy                  # pushes frontend/dist to branch gh-pages (needs git remote)
+```
+
+For **GitHub Pages**, enable the **gh-pages** branch in the repo’s Pages settings. The app expects base path **`/DSA_Journey/`** (see `frontend/vite.config.ts` → `GH_PAGES_BASE` and `frontend/.env.production`). If your GitHub repo name is different, update those and `homepage` in `frontend/package.json`.
 
 ## 🎨 Visual Representations
 
