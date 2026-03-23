@@ -1,6 +1,8 @@
 import { FileCode2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { filePath } from "@/lib/routes";
+import { getTopicTheme } from "@/lib/topicThemes";
+import { cn } from "@/lib/utils";
 import type { DsaFile, Topic } from "@/types/dsa";
 
 type Props = {
@@ -10,15 +12,16 @@ type Props = {
 };
 
 export function FileStudySidebar({ topic, file, relatedFiles }: Props) {
+  const theme = getTopicTheme(topic.slug);
   return (
-    <div className="space-y-6">
+    <div className={cn("space-y-6", theme.transition)}>
       <section className="rounded-2xl border border-slate-200/85 bg-white p-5 shadow-[var(--shadow-card)]">
         <h3 className="text-sm font-semibold text-[#0a1628]">Concepts practiced</h3>
         {file.concepts.length ? (
           <ul className="mt-3 space-y-2">
             {file.concepts.map((c) => (
               <li key={c} className="flex gap-2 text-sm text-slate-700">
-                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-400" />
+                <span className={cn("mt-2 h-1.5 w-1.5 shrink-0 rounded-full", theme.sidebarConceptDot)} />
                 {c}
               </li>
             ))}
@@ -37,7 +40,7 @@ export function FileStudySidebar({ topic, file, relatedFiles }: Props) {
             {file.tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border border-slate-200/85 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-700"
+                className={cn("rounded-full border px-3 py-1 text-xs font-medium", theme.sidebarTag)}
               >
                 {tag}
               </span>
@@ -65,7 +68,7 @@ export function FileStudySidebar({ topic, file, relatedFiles }: Props) {
                   to={filePath(topic.slug, f.slug)}
                   className="flex min-w-0 items-center gap-2 rounded-lg px-2 py-2 text-sm text-slate-700 transition hover:bg-slate-50"
                 >
-                  <FileCode2 className="h-4 w-4 shrink-0 text-[#2563eb]" strokeWidth={2} />
+                  <FileCode2 className={cn("h-4 w-4 shrink-0", theme.sidebarFileIcon)} strokeWidth={2} />
                   <span className="truncate font-mono text-xs font-medium">{f.name}</span>
                 </Link>
               </li>

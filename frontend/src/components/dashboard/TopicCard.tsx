@@ -45,6 +45,7 @@ export function TopicCard({ topic, variant }: Props) {
         id={topic.id}
         className={cn(
           "dashboard-card relative scroll-mt-28 overflow-hidden rounded-[2rem] border shadow-[var(--shadow-card)] sm:rounded-[2.25rem]",
+          theme.transition,
           theme.featuredBorder,
           theme.featuredBg,
         )}
@@ -126,7 +127,8 @@ export function TopicCard({ topic, variant }: Props) {
     <article
       id={topic.id}
       className={cn(
-        "dashboard-card group relative flex min-h-full scroll-mt-28 flex-col overflow-hidden rounded-[1.65rem] border shadow-[var(--shadow-card)] transition sm:rounded-[1.85rem]",
+        "dashboard-card group relative flex min-h-full scroll-mt-28 flex-col overflow-hidden rounded-[1.65rem] border shadow-[var(--shadow-card)] sm:rounded-[1.85rem]",
+        theme.transition,
         theme.cardBorder,
         theme.cardBg,
         theme.cardBorderHover,

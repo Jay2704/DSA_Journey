@@ -1,6 +1,8 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { filePath } from "@/lib/routes";
+import { getTopicTheme } from "@/lib/topicThemes";
+import { cn } from "@/lib/utils";
 import type { DsaFile, Topic } from "@/types/dsa";
 
 type Props = {
@@ -10,17 +12,28 @@ type Props = {
 };
 
 export function FilePrevNext({ topic, prevFile, nextFile }: Props) {
+  const theme = getTopicTheme(topic.slug);
   return (
     <nav
-      className="mb-6 flex flex-col gap-3 rounded-2xl border border-slate-200/85 bg-white p-3 shadow-[var(--shadow-card)] sm:flex-row sm:items-stretch sm:justify-between sm:gap-4 sm:p-4"
+      className={cn(
+        "mb-6 flex flex-col gap-3 rounded-2xl border border-slate-200/85 bg-white p-3 shadow-[var(--shadow-card)] transition-colors duration-300 sm:flex-row sm:items-stretch sm:justify-between sm:gap-4 sm:p-4",
+      )}
       aria-label="Previous and next file in topic"
     >
       {prevFile ? (
         <Link
           to={filePath(topic.slug, prevFile.slug)}
-          className="group flex min-h-[3.25rem] flex-1 items-center gap-3 rounded-xl border border-transparent bg-slate-50/85 px-4 py-3 transition hover:border-blue-200/85 hover:bg-blue-50/80"
+          className={cn(
+            "group flex min-h-[3.25rem] flex-1 items-center gap-3 rounded-xl border border-transparent bg-slate-50/85 px-4 py-3 transition-colors duration-300",
+            theme.prevNextHover,
+          )}
         >
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white text-slate-500 shadow-sm ring-1 ring-slate-200/80 group-hover:text-blue-600">
+          <span
+            className={cn(
+              "flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white text-slate-500 shadow-sm ring-1 ring-slate-200/80 transition-colors duration-300",
+              theme.prevNextIconHover,
+            )}
+          >
             <ChevronLeft className="h-5 w-5" strokeWidth={2} />
           </span>
           <span className="min-w-0 text-left">
@@ -39,13 +52,21 @@ export function FilePrevNext({ topic, prevFile, nextFile }: Props) {
       {nextFile ? (
         <Link
           to={filePath(topic.slug, nextFile.slug)}
-          className="group flex min-h-[3.25rem] flex-1 items-end justify-end gap-3 rounded-xl border border-transparent bg-slate-50/85 px-4 py-3 text-right transition hover:border-blue-200/85 hover:bg-blue-50/80"
+          className={cn(
+            "group flex min-h-[3.25rem] flex-1 items-end justify-end gap-3 rounded-xl border border-transparent bg-slate-50/85 px-4 py-3 text-right transition-colors duration-300",
+            theme.prevNextHover,
+          )}
         >
           <span className="min-w-0 text-right">
             <span className="block text-[11px] font-semibold uppercase tracking-wide text-slate-500">Next</span>
             <span className="mt-0.5 block truncate font-mono text-sm font-semibold text-slate-900">{nextFile.name}</span>
           </span>
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white text-slate-500 shadow-sm ring-1 ring-slate-200/80 group-hover:text-blue-600">
+          <span
+            className={cn(
+              "flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white text-slate-500 shadow-sm ring-1 ring-slate-200/80 transition-colors duration-300",
+              theme.prevNextIconHover,
+            )}
+          >
             <ChevronRight className="h-5 w-5" strokeWidth={2} />
           </span>
         </Link>

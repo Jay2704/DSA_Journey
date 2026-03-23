@@ -8,7 +8,7 @@ export function MainLayout() {
     <div className="flex min-h-dvh flex-col">
       <Navbar />
       <main
-        className={`flex-1 pb-28 text-[#0a1628] sm:pb-32 md:pb-10 ${dashboardShell}`}
+        className={`flex-1 pb-28 text-[#0a1628] transition-colors duration-300 ease-out sm:pb-32 md:pb-10 ${dashboardShell}`}
       >
         <Outlet />
       </main>

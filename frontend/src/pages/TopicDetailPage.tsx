@@ -143,7 +143,7 @@ export function TopicDetailPage() {
 
   if (files.length === 0) {
     return (
-      <div className={cn(theme.pageShell, "min-h-full w-full")}>
+      <div className={cn(theme.pageShell, theme.transition, "min-h-full w-full")}>
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
         <div className="rounded-2xl border border-dashed border-slate-200/90 bg-slate-50/70 px-6 py-12 text-center">
           <Layers className="mx-auto h-10 w-10 text-slate-300" strokeWidth={1.5} />
@@ -154,7 +154,10 @@ export function TopicDetailPage() {
           </p>
           <Link
             to={routes.topics}
-            className="mt-6 inline-flex items-center justify-center rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
+            className={cn(
+              "mt-6 inline-flex items-center justify-center rounded-xl px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:brightness-105",
+              theme.ctaPrimary,
+            )}
           >
             Back to topics
           </Link>
@@ -168,22 +171,22 @@ export function TopicDetailPage() {
   const previewHidden = mobileTab !== "preview" ? "hidden lg:flex" : "";
 
   return (
-    <div className={cn(theme.pageShell, "min-h-full w-full")}>
+    <div className={cn(theme.pageShell, theme.transition, "min-h-full w-full")}>
       <div className="mx-auto max-w-6xl min-w-0 px-4 pt-8 sm:px-6 sm:pt-10">
       <nav
         className="mb-8 flex min-w-0 flex-nowrap items-center gap-1.5 overflow-x-auto pb-1 text-sm text-slate-600 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         aria-label="Breadcrumb"
       >
-        <Link to={routes.home} className="inline-flex items-center gap-1 font-medium hover:text-blue-600">
+        <Link to={routes.home} className={cn("inline-flex items-center gap-1 font-medium transition-colors", theme.navLinkHover)}>
           <Home className="h-4 w-4" strokeWidth={2} />
           Dashboard
         </Link>
         <ChevronRight className="h-4 w-4 shrink-0 text-slate-300" aria-hidden />
-        <Link to={routes.topics} className="font-medium hover:text-blue-600">
+        <Link to={routes.topics} className={cn("font-medium transition-colors", theme.navLinkHover)}>
           Topics
         </Link>
         <ChevronRight className="h-4 w-4 shrink-0 text-slate-300" aria-hidden />
-        <span className="shrink-0 font-semibold text-slate-900">{topic.title}</span>
+        <span className={cn("shrink-0", theme.breadcrumbActive)}>{topic.title}</span>
       </nav>
 
       <header
@@ -197,18 +200,23 @@ export function TopicDetailPage() {
           <div className={cn("flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl ring-1", theme.iconFeatured)}>
             <TopicIcon icon={topic.icon} className="h-7 w-7" strokeWidth={1.75} />
           </div>
-          <div className="min-w-0 flex-1">
+          <div className={cn("min-w-0 flex-1", theme.headingCluster)}>
             <h1 className="text-2xl font-semibold tracking-tight text-[#0a1628] sm:text-3xl">{topic.title}</h1>
             <p className="mt-2 max-w-3xl text-slate-600">{topic.description}</p>
             <div className="mt-4 flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-200/85 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-700">
-                <Layers className="h-3.5 w-3.5 text-[#2563eb]" strokeWidth={2} />
+              <span
+                className={cn(
+                  "inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold",
+                  theme.headerMetaChip,
+                )}
+              >
+                <Layers className={cn("h-3.5 w-3.5", theme.headerMetaIcon)} strokeWidth={2} />
                 {files.length} files
               </span>
               {Array.from(new Set(files.map((f) => f.language))).map((lang) => (
                 <span
                   key={lang}
-                  className="rounded-full border border-slate-200/85 bg-white px-3 py-1 text-xs font-semibold text-[#0a1628]"
+                  className={cn("rounded-full border px-3 py-1 text-xs font-semibold", theme.headerLangChip)}
                 >
                   {lang}
                 </span>
@@ -216,7 +224,7 @@ export function TopicDetailPage() {
               {topic.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full border border-slate-200/85 bg-white px-3 py-1 text-xs font-medium text-slate-700"
+                  className={cn("rounded-full border px-3 py-1 text-xs font-medium", theme.headerTopicTag)}
                 >
                   {tag}
                 </span>
@@ -226,10 +234,10 @@ export function TopicDetailPage() {
         </div>
       </header>
 
-      <div className="rounded-[1.35rem] border border-slate-200/85 bg-slate-50/50 p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.65)] sm:p-4">
+      <div className={cn("rounded-[1.35rem] border p-3 sm:p-4", theme.explorerChrome)}>
         <div className="mb-3 flex flex-col gap-2 px-1 sm:flex-row sm:items-center">
           <div className="flex min-w-0 items-center gap-2.5">
-            <Layers className="h-4 w-4 shrink-0 text-[#2563eb]" strokeWidth={2} />
+            <Layers className={cn("h-4 w-4 shrink-0", theme.explorerIcon)} strokeWidth={2} />
             <h2 className="text-sm font-semibold text-[#0a1628]">Topic explorer</h2>
           </div>
           <span className="font-mono text-[11px] text-slate-500 sm:ml-auto">
@@ -238,7 +246,7 @@ export function TopicDetailPage() {
         </div>
 
         <div
-          className="mb-3 flex rounded-xl border border-slate-200/85 bg-white p-1 shadow-sm lg:hidden"
+          className="mb-3 flex rounded-xl border border-slate-200/85 bg-white p-1 shadow-sm transition-colors duration-300 lg:hidden"
           role="tablist"
           aria-label="Explorer or preview"
         >
@@ -247,11 +255,7 @@ export function TopicDetailPage() {
             role="tab"
             aria-selected={mobileTab === "explorer"}
             onClick={() => setMobileTab("explorer")}
-            className={
-              mobileTab === "explorer"
-                ? "flex-1 rounded-lg bg-blue-600 py-2.5 text-xs font-semibold text-white shadow-sm"
-                : "flex-1 rounded-lg py-2.5 text-xs font-medium text-slate-600 hover:bg-slate-50"
-            }
+            className={mobileTab === "explorer" ? theme.tabActive : theme.tabInactive}
           >
             Files & filters
           </button>
@@ -260,11 +264,7 @@ export function TopicDetailPage() {
             role="tab"
             aria-selected={mobileTab === "preview"}
             onClick={() => setMobileTab("preview")}
-            className={
-              mobileTab === "preview"
-                ? "flex-1 rounded-lg bg-blue-600 py-2.5 text-xs font-semibold text-white shadow-sm"
-                : "flex-1 rounded-lg py-2.5 text-xs font-medium text-slate-600 hover:bg-slate-50"
-            }
+            className={mobileTab === "preview" ? theme.tabActive : theme.tabInactive}
           >
             Preview
           </button>
@@ -286,7 +286,10 @@ export function TopicDetailPage() {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Filter by name, tag, concept…"
-                  className="w-full rounded-xl border border-slate-200/85 bg-slate-50/90 py-2.5 pl-10 pr-3 text-sm outline-none focus:border-blue-300/90 focus:bg-white focus:ring-4 focus:ring-[#2563eb]/12"
+                  className={cn(
+                    "w-full rounded-xl border border-slate-200/85 bg-slate-50/90 py-2.5 pl-10 pr-3 text-sm outline-none transition-colors duration-300",
+                    theme.searchFocus,
+                  )}
                 />
               </label>
               <div>
@@ -303,11 +306,10 @@ export function TopicDetailPage() {
                       key={id}
                       type="button"
                       onClick={() => setSortBy(id)}
-                      className={
-                        sortBy === id
-                          ? "rounded-lg bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm"
-                          : "rounded-lg border border-slate-200/90 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:border-blue-200/90 hover:bg-blue-50/70"
-                      }
+                      className={cn(
+                        "transition-colors duration-300",
+                        sortBy === id ? theme.sortActive : theme.sortInactive,
+                      )}
                     >
                       {label}
                     </button>
@@ -324,11 +326,10 @@ export function TopicDetailPage() {
                         key={lang}
                         type="button"
                         onClick={() => toggleLang(lang)}
-                        className={
-                          on
-                            ? "rounded-full border border-blue-200/90 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-900"
-                            : "rounded-full border border-slate-200/90 bg-white px-3 py-1 text-xs font-medium text-slate-600 hover:bg-slate-50"
-                        }
+                        className={cn(
+                          "transition-colors duration-300",
+                          on ? theme.filterChipOn : theme.filterChipOff,
+                        )}
                       >
                         {lang}
                       </button>
@@ -346,11 +347,10 @@ export function TopicDetailPage() {
                         key={id}
                         type="button"
                         onClick={() => toggleStatus(id)}
-                        className={
-                          on
-                            ? "rounded-full border border-blue-200/90 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-900"
-                            : "rounded-full border border-slate-200/90 bg-white px-3 py-1 text-xs font-medium text-slate-600 hover:bg-slate-50"
-                        }
+                        className={cn(
+                          "transition-colors duration-300",
+                          on ? theme.filterChipOn : theme.filterChipOff,
+                        )}
                       >
                         {label}
                       </button>
@@ -370,17 +370,16 @@ export function TopicDetailPage() {
                         setSelectedId(file.id);
                         setMobileTab("preview");
                       }}
-                      className={
-                        active
-                          ? "w-full rounded-xl border border-blue-200/90 bg-blue-50/95 px-3 py-3 text-left shadow-sm ring-1 ring-blue-100/85"
-                          : "w-full rounded-xl border border-transparent px-3 py-3 text-left hover:border-slate-200/80 hover:bg-slate-50/90"
-                      }
+                      className={cn(
+                        "transition-[background-color,border-color,box-shadow] duration-300",
+                        active ? theme.fileRowActive : theme.fileRowInactive,
+                      )}
                     >
                       <div className="flex items-start justify-between gap-2">
                         <span
                           className={cn(
                             "min-w-0 break-words font-mono text-[13px]",
-                            active ? "font-semibold text-blue-900" : "font-medium text-slate-800",
+                            active ? theme.fileRowActiveTitle : "font-medium text-slate-800",
                           )}
                         >
                           {file.name}
@@ -388,7 +387,7 @@ export function TopicDetailPage() {
                         <span
                           className={cn(
                             "shrink-0 rounded-md px-2 py-0.5 text-[10px] font-semibold",
-                            active ? "bg-white/90 text-blue-800 ring-1 ring-blue-100" : "bg-slate-100 text-slate-600",
+                            active ? theme.fileRowActiveBadge : "bg-slate-100 text-slate-600",
                           )}
                         >
                           {file.language}
@@ -417,7 +416,7 @@ export function TopicDetailPage() {
                       setLangPick(new Set());
                       setStatusPick(new Set());
                     }}
-                    className="mt-3 text-xs font-semibold text-[#2563eb] hover:text-[#1d4ed8]"
+                    className={cn("mt-3 text-xs font-semibold transition-colors", theme.textLink)}
                   >
                     Clear filters
                   </button>
@@ -431,10 +430,10 @@ export function TopicDetailPage() {
           >
             {selected ? (
               <>
-                <div className="border-b border-slate-200/60 bg-gradient-to-b from-slate-50/95 to-white px-5 py-5 sm:px-6">
+                <div className={cn("border-b px-5 py-5 transition-colors duration-300 sm:px-6", theme.previewHeader)}>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-slate-500">Preview</p>
                   <div className="mt-2 flex items-center gap-2">
-                    <FileCode2 className="h-5 w-5 shrink-0 text-[#2563eb]" strokeWidth={2} />
+                    <FileCode2 className={cn("h-5 w-5 shrink-0", theme.previewIcon)} strokeWidth={2} />
                     <h3 className="font-mono text-lg font-bold text-slate-900 sm:text-xl">{selected.name}</h3>
                   </div>
                   <p className="mt-2 flex flex-wrap items-center gap-2 text-sm text-slate-600">
@@ -452,7 +451,7 @@ export function TopicDetailPage() {
                   </p>
                   <Link
                     to={filePath(topic.slug, selected.slug)}
-                    className="mt-4 inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-blue-500/15 transition hover:bg-blue-700"
+                    className={cn("mt-4 inline-flex items-center gap-2 transition-colors duration-300", theme.previewCta)}
                   >
                     <Code2 className="h-4 w-4" strokeWidth={2} />
                     Open full code
@@ -476,7 +475,7 @@ export function TopicDetailPage() {
                             key={c}
                             className="flex gap-2 rounded-lg border border-slate-100 bg-slate-50/80 px-3 py-2 text-sm text-slate-800"
                           >
-                            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-400" />
+                            <span className={cn("mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full", theme.conceptDot)} />
                             {c}
                           </li>
                         ))}
@@ -492,7 +491,7 @@ export function TopicDetailPage() {
                         {selected.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="rounded-full border border-slate-200/85 bg-white px-3 py-1 text-xs font-medium text-slate-700 shadow-sm"
+                            className={cn("rounded-full border px-3 py-1 text-xs font-medium shadow-sm", theme.previewTag)}
                           >
                             {tag}
                           </span>

@@ -50,26 +50,31 @@ export function FileDetailPage() {
   const theme = getTopicTheme(topic.slug);
 
   return (
-    <div className={cn(theme.pageShell, "min-h-full w-full")}>
+    <div className={cn(theme.pageShell, theme.transition, "min-h-full w-full")}>
       <div className="mx-auto max-w-6xl min-w-0 px-4 pt-8 sm:px-6 sm:pt-10">
       <nav
         className="mb-8 flex min-w-0 flex-nowrap items-center gap-1.5 overflow-x-auto pb-1 text-sm text-slate-600 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         aria-label="Breadcrumb"
       >
-        <Link to={routes.home} className="inline-flex shrink-0 items-center gap-1 font-medium hover:text-blue-600">
+        <Link to={routes.home} className={cn("inline-flex shrink-0 items-center gap-1 font-medium transition-colors", theme.navLinkHover)}>
           <Home className="h-4 w-4" strokeWidth={2} />
           Dashboard
         </Link>
         <ChevronRight className="h-4 w-4 shrink-0 text-slate-300" aria-hidden />
-        <Link to={routes.topics} className="shrink-0 font-medium hover:text-blue-600">
+        <Link to={routes.topics} className={cn("shrink-0 font-medium transition-colors", theme.navLinkHover)}>
           Topics
         </Link>
         <ChevronRight className="h-4 w-4 shrink-0 text-slate-300" aria-hidden />
-        <Link to={topicPath(topic.slug)} className="shrink-0 font-medium hover:text-blue-600">
+        <Link to={topicPath(topic.slug)} className={cn("shrink-0 font-medium transition-colors", theme.navLinkHover)}>
           {topic.title}
         </Link>
         <ChevronRight className="h-4 w-4 shrink-0 text-slate-300" aria-hidden />
-        <span className="max-w-[min(100%,18rem)] shrink-0 truncate font-mono text-[13px] font-semibold text-slate-900 sm:max-w-none">
+        <span
+          className={cn(
+            "max-w-[min(100%,18rem)] shrink-0 truncate font-mono text-[13px] sm:max-w-none",
+            theme.breadcrumbActive,
+          )}
+        >
           {file.name}
         </span>
       </nav>
@@ -82,9 +87,11 @@ export function FileDetailPage() {
         )}
       >
         <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-          <div className="min-w-0 space-y-3">
+          <div className={cn("min-w-0 space-y-3", theme.headingCluster)}>
             <div className="flex flex-wrap items-center gap-2">
-              <span className="rounded-md bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-700">{file.language}</span>
+              <span className={cn("rounded-md border px-2 py-0.5 text-xs font-semibold", theme.fileHeaderTag)}>
+                {file.language}
+              </span>
               <span
                 className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide ring-1 ring-inset ${
                   file.status === "completed"
@@ -107,10 +114,7 @@ export function FileDetailPage() {
             <p className="max-w-3xl text-sm leading-relaxed text-slate-700">{file.shortDescription}</p>
             <div className="flex flex-wrap gap-2">
               {file.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full border border-slate-200/85 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-700"
-                >
+                <span key={tag} className={cn("rounded-full border px-3 py-1 text-xs font-medium", theme.sidebarTag)}>
                   {tag}
                 </span>
               ))}
@@ -121,12 +125,15 @@ export function FileDetailPage() {
               type="button"
               onClick={handleCopy}
               disabled={!rawCode}
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200/85 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-blue-200/90 hover:bg-blue-50/85 disabled:cursor-not-allowed disabled:opacity-50"
+              className={cn(
+                "inline-flex items-center justify-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition-colors duration-300",
+                theme.copyButton,
+              )}
             >
               {copied ? (
                 <CheckCircle2 className="h-4 w-4 text-emerald-600" strokeWidth={2} />
               ) : (
-                <Copy className="h-4 w-4 text-blue-600" strokeWidth={2} />
+                <Copy className={cn("h-4 w-4", theme.copyIcon)} strokeWidth={2} />
               )}
               {copied ? "Copied" : "Copy code"}
             </button>
@@ -167,7 +174,12 @@ export function FileDetailPage() {
                 </div>
               }
             >
-              <CodeViewer code={rawCode} language={file.language} fileName={file.name} />
+              <CodeViewer
+                code={rawCode}
+                language={file.language}
+                fileName={file.name}
+                headerClassName={theme.codeViewerHeader}
+              />
             </Suspense>
           )}
         </div>

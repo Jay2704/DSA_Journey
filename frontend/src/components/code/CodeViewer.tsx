@@ -8,11 +8,13 @@ type Props = {
   language: Language;
   fileName: string;
   className?: string;
+  /** Accent the header bar (e.g. topic theme) without changing the code panel */
+  headerClassName?: string;
 };
 
 const LINE_LEADING = "leading-[1.625]";
 
-export function CodeViewer({ code, language, fileName, className }: Props) {
+export function CodeViewer({ code, language, fileName, className, headerClassName }: Props) {
   const [html, setHtml] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(null);
 
@@ -48,7 +50,12 @@ export function CodeViewer({ code, language, fileName, className }: Props) {
         className,
       )}
     >
-      <div className="flex min-w-0 items-center justify-between gap-2 border-b border-slate-700/80 bg-slate-900/90 px-4 py-2.5">
+      <div
+        className={cn(
+          "flex min-w-0 items-center justify-between gap-2 border-b px-4 py-2.5 transition-colors duration-300",
+          headerClassName ?? "border-slate-700/80 bg-slate-900/90",
+        )}
+      >
         <span className="min-w-0 truncate font-mono text-[11px] font-medium text-slate-400">{fileName}</span>
         <span className="shrink-0 rounded-md bg-slate-800 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-300">
           {language}
