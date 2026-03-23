@@ -15,7 +15,18 @@ class BST {
         root = null;
     }
 
-   
+    // Insert a node
+    Node insert(Node root, int key) {
+        if (root == null) {
+            return new Node(key);
+        }
+        if (key < root.key) {
+            root.left = insert(root.left, key);
+        } else {
+            root.right = insert(root.right, key);
+        }
+        return root;
+    }
 
     // Inorder Traversal (Left -> Root -> Right)
     void inorderTraversal(Node root) {
