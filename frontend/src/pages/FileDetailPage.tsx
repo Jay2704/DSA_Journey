@@ -5,7 +5,8 @@ import { FilePrevNext } from "@/components/file/FilePrevNext";
 import { FileStudySidebar } from "@/components/file/FileStudySidebar";
 import { getAdjacentFiles, getFileBySlugs, getTopicBySlug } from "@/data/dsaData";
 import { routes, topicPath } from "@/lib/routes";
-import { difficultyLabel, statusLabel } from "@/lib/utils";
+import { getTopicTheme } from "@/lib/topicThemes";
+import { cn, difficultyLabel, statusLabel } from "@/lib/utils";
 import { useFetchedText } from "@/hooks/useFetchedText";
 
 const CodeViewer = lazy(() =>
@@ -46,8 +47,11 @@ export function FileDetailPage() {
     });
   };
 
+  const theme = getTopicTheme(topic.slug);
+
   return (
-    <div className="mx-auto max-w-6xl min-w-0 px-4 pt-8 sm:px-6 sm:pt-10">
+    <div className={cn(theme.pageShell, "min-h-full w-full")}>
+      <div className="mx-auto max-w-6xl min-w-0 px-4 pt-8 sm:px-6 sm:pt-10">
       <nav
         className="mb-8 flex min-w-0 flex-nowrap items-center gap-1.5 overflow-x-auto pb-1 text-sm text-slate-600 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         aria-label="Breadcrumb"
@@ -70,7 +74,13 @@ export function FileDetailPage() {
         </span>
       </nav>
 
-      <header className="mb-8 rounded-[1.65rem] border border-slate-200/85 bg-white p-6 shadow-[var(--shadow-card)] sm:p-8">
+      <header
+        className={cn(
+          "mb-8 rounded-[1.65rem] border p-6 shadow-[var(--shadow-card)] sm:p-8",
+          theme.featuredBorder,
+          theme.cardBg,
+        )}
+      >
         <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
           <div className="min-w-0 space-y-3">
             <div className="flex flex-wrap items-center gap-2">
@@ -164,6 +174,7 @@ export function FileDetailPage() {
         <div className="min-w-0 lg:col-span-4">
           <FileStudySidebar topic={topic} file={file} relatedFiles={relatedFiles} />
         </div>
+      </div>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import { ArrowRight, FileCode2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { TopicIcon } from "@/components/topic/TopicIcon";
 import { topicPath } from "@/lib/routes";
+import { getTopicTheme } from "@/lib/topicThemes";
 import type { Topic } from "@/types/dsa";
 import { cn } from "@/lib/utils";
 
@@ -11,11 +12,14 @@ type Props = {
   variant?: "featured" | "default";
 };
 
-function CardBackdrop() {
+function CardBackdrop({ svgAccent }: { svgAccent: string }) {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]" aria-hidden>
       <svg
-        className="absolute -right-8 -top-12 h-[min(100%,22rem)] w-[min(100%,22rem)] text-[#2563eb]/[0.12] sm:-right-4 sm:-top-8"
+        className={cn(
+          "absolute -right-8 -top-12 h-[min(100%,22rem)] w-[min(100%,22rem)] sm:-right-4 sm:-top-8",
+          svgAccent,
+        )}
         viewBox="0 0 400 400"
         fill="none"
       >
@@ -31,6 +35,7 @@ function CardBackdrop() {
 }
 
 export function TopicCard({ topic, variant }: Props) {
+  const theme = getTopicTheme(topic.slug);
   const isFeatured =
     variant === "featured" || (variant !== "default" && Boolean(topic.featured));
 
@@ -38,12 +43,29 @@ export function TopicCard({ topic, variant }: Props) {
     return (
       <article
         id={topic.id}
-        className="dashboard-card relative scroll-mt-28 overflow-hidden rounded-[2rem] border border-slate-200/85 bg-white shadow-[var(--shadow-card)] sm:rounded-[2.25rem]"
+        className={cn(
+          "dashboard-card relative scroll-mt-28 overflow-hidden rounded-[2rem] border shadow-[var(--shadow-card)] sm:rounded-[2.25rem]",
+          theme.featuredBorder,
+          theme.featuredBg,
+        )}
       >
-        <CardBackdrop />
+        <CardBackdrop svgAccent={theme.svgAccent} />
+        <div
+          className={cn("pointer-events-none absolute -right-12 -top-16 h-56 w-56 rounded-full blur-3xl", theme.featuredOrb)}
+          aria-hidden
+        />
+        <div
+          className={cn("pointer-events-none absolute -bottom-8 -left-8 h-40 w-40 rounded-full blur-2xl", theme.featuredOrb2)}
+          aria-hidden
+        />
         <div className="relative z-[1] flex min-h-[18rem] flex-col p-8 sm:min-h-[20rem] sm:p-10 lg:p-12">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8">
-            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-[1.15rem] bg-[#dbeafe] text-[#2563eb] shadow-sm ring-1 ring-blue-100/90">
+            <div
+              className={cn(
+                "flex h-16 w-16 shrink-0 items-center justify-center rounded-[1.15rem] shadow-sm ring-1",
+                theme.iconFeatured,
+              )}
+            >
               <TopicIcon icon={topic.icon} className="h-8 w-8" strokeWidth={1.65} />
             </div>
             <div className="min-w-0 flex-1 space-y-2">
@@ -58,7 +80,7 @@ export function TopicCard({ topic, variant }: Props) {
             {topic.tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border border-slate-200/85 bg-slate-50/95 px-3.5 py-1.5 text-xs font-medium text-[#0a1628]/90"
+                className={cn("rounded-full border px-3.5 py-1.5 text-xs font-medium", theme.tagChip)}
               >
                 {tag}
               </span>
@@ -66,14 +88,19 @@ export function TopicCard({ topic, variant }: Props) {
           </div>
           <div className="mt-auto flex flex-col gap-6 pt-10 sm:flex-row sm:items-end sm:justify-between">
             <div className="flex flex-wrap items-center gap-2.5">
-              <span className="inline-flex items-center gap-2 rounded-full border border-slate-200/85 bg-white/95 px-3.5 py-2 text-xs font-medium text-slate-700 shadow-sm">
-                <FileCode2 className="h-3.5 w-3.5 shrink-0 text-[#2563eb]" strokeWidth={2} />
+              <span
+                className={cn(
+                  "inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-xs font-medium shadow-sm",
+                  theme.filePill,
+                )}
+              >
+                <FileCode2 className={cn("h-3.5 w-3.5 shrink-0", theme.filePillIcon)} strokeWidth={2} />
                 {topic.files.length} files
               </span>
               {Array.from(new Set(topic.files.map((f) => f.language))).map((lang) => (
                 <span
                   key={lang}
-                  className="rounded-full border border-slate-200/85 bg-white px-3.5 py-2 text-xs font-semibold text-[#0a1628]/90"
+                  className={cn("rounded-full border px-3.5 py-2 text-xs font-semibold", theme.tagChip)}
                 >
                   {lang}
                 </span>
@@ -81,7 +108,10 @@ export function TopicCard({ topic, variant }: Props) {
             </div>
             <Link
               to={topicPath(topic.slug)}
-              className="inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-2xl bg-gradient-to-b from-[#2563eb] to-[#1d4ed8] px-7 py-3.5 text-sm font-semibold text-white shadow-md shadow-blue-500/20 transition hover:brightness-[1.03] active:brightness-[0.98] sm:self-end"
+              className={cn(
+                "inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-2xl px-7 py-3.5 text-sm font-semibold text-white shadow-md transition hover:brightness-[1.03] active:brightness-[0.98] sm:self-end",
+                theme.ctaPrimary,
+              )}
             >
               Explore topic
               <ArrowRight className="h-4 w-4" strokeWidth={2} />
@@ -96,12 +126,21 @@ export function TopicCard({ topic, variant }: Props) {
     <article
       id={topic.id}
       className={cn(
-        "dashboard-card group relative flex min-h-full scroll-mt-28 flex-col overflow-hidden rounded-[1.65rem] border border-slate-200/85 bg-white shadow-[var(--shadow-card)] transition hover:border-slate-300/80 hover:shadow-[var(--shadow-card-hover)] sm:rounded-[1.85rem]",
+        "dashboard-card group relative flex min-h-full scroll-mt-28 flex-col overflow-hidden rounded-[1.65rem] border shadow-[var(--shadow-card)] transition sm:rounded-[1.85rem]",
+        theme.cardBorder,
+        theme.cardBg,
+        theme.cardBorderHover,
+        "hover:shadow-[var(--shadow-card-hover)]",
       )}
     >
       <div className="relative z-[1] flex flex-1 flex-col p-6 sm:p-8">
         <div className="flex items-start gap-4">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[1rem] bg-[#dbeafe] text-[#2563eb] ring-1 ring-blue-100/90">
+          <div
+            className={cn(
+              "flex h-12 w-12 shrink-0 items-center justify-center rounded-[1rem] shadow-sm ring-1",
+              theme.iconDefault,
+            )}
+          >
             <TopicIcon icon={topic.icon} className="h-6 w-6" strokeWidth={1.65} />
           </div>
           <div className="min-w-0 flex-1 pt-0.5">
@@ -115,15 +154,15 @@ export function TopicCard({ topic, variant }: Props) {
           {topic.tags.slice(0, 4).map((tag) => (
             <span
               key={tag}
-              className="rounded-full border border-slate-200/85 bg-slate-50/95 px-3 py-1 text-[11px] font-medium text-[#0a1628]/85"
+              className={cn("rounded-full border px-3 py-1 text-[11px] font-medium", theme.tagChip)}
             >
               {tag}
             </span>
           ))}
         </div>
-        <div className="mt-8 flex flex-col gap-4 border-t border-slate-200/50 pt-7 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-8 flex flex-col gap-4 border-t border-white/40 pt-7 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-slate-600">
-            <FileCode2 className="h-3.5 w-3.5 shrink-0 text-[#2563eb]" strokeWidth={2} />
+            <FileCode2 className={cn("h-3.5 w-3.5 shrink-0", theme.filePillIcon)} strokeWidth={2} />
             {topic.files.length} files
             <span className="text-slate-300">·</span>
             <span className="font-semibold text-[#0a1628]/80">
@@ -132,10 +171,13 @@ export function TopicCard({ topic, variant }: Props) {
           </div>
           <Link
             to={topicPath(topic.slug)}
-            className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-2xl border border-slate-200/85 bg-white px-5 py-2.5 text-sm font-semibold text-[#0a1628] shadow-sm transition hover:border-blue-300/90 hover:bg-[#eff6ff] hover:text-[#1d4ed8] active:scale-[0.99]"
+            className={cn(
+              "inline-flex shrink-0 items-center justify-center gap-1.5 rounded-2xl border border-white/60 bg-white/80 px-5 py-2.5 text-sm font-semibold text-[#0a1628] shadow-sm transition active:scale-[0.99]",
+              theme.exploreLink,
+            )}
           >
             Explore
-            <ArrowRight className="h-4 w-4 text-[#2563eb]" strokeWidth={2} />
+            <ArrowRight className={cn("h-4 w-4", theme.exploreIcon)} strokeWidth={2} />
           </Link>
         </div>
       </div>

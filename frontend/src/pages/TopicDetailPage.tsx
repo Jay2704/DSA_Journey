@@ -13,6 +13,7 @@ import { Link, useParams } from "react-router-dom";
 import { TopicIcon } from "@/components/topic/TopicIcon";
 import { getTopicBySlug } from "@/data/dsaData";
 import { filePath, routes } from "@/lib/routes";
+import { getTopicTheme } from "@/lib/topicThemes";
 import { cn, difficultyLabel, statusLabel } from "@/lib/utils";
 import type { DsaFile, FileStatus, Language } from "@/types/dsa";
 
@@ -138,9 +139,12 @@ export function TopicDetailPage() {
     );
   }
 
+  const theme = getTopicTheme(topic.slug);
+
   if (files.length === 0) {
     return (
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
+      <div className={cn(theme.pageShell, "min-h-full w-full")}>
+        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
         <div className="rounded-2xl border border-dashed border-slate-200/90 bg-slate-50/70 px-6 py-12 text-center">
           <Layers className="mx-auto h-10 w-10 text-slate-300" strokeWidth={1.5} />
           <h1 className="mt-4 text-lg font-semibold text-[#0a1628]">No files in this topic</h1>
@@ -155,6 +159,7 @@ export function TopicDetailPage() {
             Back to topics
           </Link>
         </div>
+        </div>
       </div>
     );
   }
@@ -163,7 +168,8 @@ export function TopicDetailPage() {
   const previewHidden = mobileTab !== "preview" ? "hidden lg:flex" : "";
 
   return (
-    <div className="mx-auto max-w-6xl min-w-0 px-4 pt-8 sm:px-6 sm:pt-10">
+    <div className={cn(theme.pageShell, "min-h-full w-full")}>
+      <div className="mx-auto max-w-6xl min-w-0 px-4 pt-8 sm:px-6 sm:pt-10">
       <nav
         className="mb-8 flex min-w-0 flex-nowrap items-center gap-1.5 overflow-x-auto pb-1 text-sm text-slate-600 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         aria-label="Breadcrumb"
@@ -180,9 +186,15 @@ export function TopicDetailPage() {
         <span className="shrink-0 font-semibold text-slate-900">{topic.title}</span>
       </nav>
 
-      <header className="mb-8 rounded-[1.65rem] border border-slate-200/85 bg-white p-6 shadow-[var(--shadow-card)] sm:p-8">
+      <header
+        className={cn(
+          "mb-8 rounded-[1.65rem] border p-6 shadow-[var(--shadow-card)] sm:p-8",
+          theme.featuredBorder,
+          theme.cardBg,
+        )}
+      >
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
-          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#dbeafe] text-[#2563eb] ring-1 ring-blue-100/90">
+          <div className={cn("flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl ring-1", theme.iconFeatured)}>
             <TopicIcon icon={topic.icon} className="h-7 w-7" strokeWidth={1.75} />
           </div>
           <div className="min-w-0 flex-1">
@@ -500,6 +512,7 @@ export function TopicDetailPage() {
             )}
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

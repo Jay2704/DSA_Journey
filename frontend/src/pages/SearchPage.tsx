@@ -7,6 +7,8 @@ import { TopicIcon } from "@/components/topic/TopicIcon";
 import { topics } from "@/data/dsaData";
 import { filePath, topicPath } from "@/lib/routes";
 import { searchFiles, searchTopics } from "@/lib/search";
+import { getTopicTheme } from "@/lib/topicThemes";
+import { cn } from "@/lib/utils";
 
 export function SearchPage() {
   const [query, setQuery] = useState("");
@@ -55,27 +57,38 @@ export function SearchPage() {
             Topics
           </h2>
           <ul className="space-y-2">
-            {topicHits.map((t) => (
-              <li key={t.slug}>
-                <Link
-                  to={topicPath(t.slug)}
-                  className="flex items-center gap-3 rounded-xl border border-slate-200/85 bg-white px-4 py-3 shadow-sm transition hover:border-blue-200/90 hover:bg-blue-50/50"
-                >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#dbeafe] text-[#2563eb]">
-                    <TopicIcon icon={t.icon} className="h-5 w-5" />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="font-semibold text-[#0a1628]">
-                      <HighlightText text={t.title} query={query} />
-                    </p>
-                    <p className="text-xs font-medium text-slate-400">{formatTopicSlugLabel(t.slug)}</p>
-                    <p className="mt-1 line-clamp-2 text-sm text-slate-600">
-                      <HighlightText text={t.description} query={query} />
-                    </p>
-                  </div>
-                </Link>
-              </li>
-            ))}
+            {topicHits.map((t) => {
+              const theme = getTopicTheme(t.slug);
+              return (
+                <li key={t.slug}>
+                  <Link
+                    to={topicPath(t.slug)}
+                    className={cn(
+                      "flex items-center gap-3 rounded-xl border px-4 py-3 shadow-sm transition",
+                      theme.searchCard,
+                    )}
+                  >
+                    <div
+                      className={cn(
+                        "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl",
+                        theme.searchIconBg,
+                      )}
+                    >
+                      <TopicIcon icon={t.icon} className="h-5 w-5" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="font-semibold text-[#0a1628]">
+                        <HighlightText text={t.title} query={query} />
+                      </p>
+                      <p className="text-xs font-medium text-slate-400">{formatTopicSlugLabel(t.slug)}</p>
+                      <p className="mt-1 line-clamp-2 text-sm text-slate-600">
+                        <HighlightText text={t.description} query={query} />
+                      </p>
+                    </div>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </section>
       ) : null}
@@ -87,11 +100,16 @@ export function SearchPage() {
             Files
           </h2>
           <ul className="space-y-2">
-            {fileHits.map(({ topic, file }) => (
+            {fileHits.map(({ topic, file }) => {
+              const theme = getTopicTheme(topic.slug);
+              return (
               <li key={file.id}>
                 <Link
                   to={filePath(topic.slug, file.slug)}
-                  className="flex flex-col gap-1 rounded-xl border border-slate-200/85 bg-white px-4 py-3 shadow-sm transition hover:border-blue-200/90 hover:bg-blue-50/50 sm:flex-row sm:items-center sm:justify-between"
+                  className={cn(
+                    "flex flex-col gap-1 rounded-xl border px-4 py-3 shadow-sm transition sm:flex-row sm:items-center sm:justify-between",
+                    theme.searchCard,
+                  )}
                 >
                   <div className="min-w-0">
                     <p className="font-mono text-sm font-semibold text-slate-900">
@@ -106,7 +124,8 @@ export function SearchPage() {
                   </div>
                 </Link>
               </li>
-            ))}
+            );
+            })}
           </ul>
         </section>
       ) : null}
