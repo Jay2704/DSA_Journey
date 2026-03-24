@@ -16,7 +16,8 @@ export function FilePrevNext({ topic, prevFile, nextFile }: Props) {
   return (
     <nav
       className={cn(
-        "mb-6 flex flex-col gap-3 rounded-2xl border border-slate-200/85 bg-white p-3 shadow-[var(--shadow-card)] transition-colors duration-300 sm:flex-row sm:items-stretch sm:justify-between sm:gap-4 sm:p-4",
+        "mb-6 flex flex-col gap-3 rounded-2xl border-2 bg-white p-3 shadow-[var(--shadow-card)] transition-all duration-300 sm:flex-row sm:items-stretch sm:justify-between sm:gap-4 sm:p-4",
+        theme.border,
       )}
       aria-label="Previous and next file in topic"
     >
@@ -24,14 +25,15 @@ export function FilePrevNext({ topic, prevFile, nextFile }: Props) {
         <Link
           to={filePath(topic.slug, prevFile.slug)}
           className={cn(
-            "group flex min-h-[3.25rem] flex-1 items-center gap-3 rounded-xl border border-transparent bg-slate-50/85 px-4 py-3 transition-colors duration-300",
-            theme.prevNextHover,
+            "group flex min-h-[3.25rem] flex-1 items-center gap-3 rounded-xl border-2 border-transparent px-4 py-3 transition-all duration-300",
+            theme.light,
+            theme.hoverBorder,
           )}
         >
           <span
             className={cn(
-              "flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white text-slate-500 shadow-sm ring-1 ring-slate-200/80 transition-colors duration-300",
-              theme.prevNextIconHover,
+              "flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white text-slate-500 shadow-sm ring-1 ring-slate-200/80 transition-all duration-300 group-hover:text-current",
+              theme.text,
             )}
           >
             <ChevronLeft className="h-5 w-5" strokeWidth={2} />
@@ -53,8 +55,9 @@ export function FilePrevNext({ topic, prevFile, nextFile }: Props) {
         <Link
           to={filePath(topic.slug, nextFile.slug)}
           className={cn(
-            "group flex min-h-[3.25rem] flex-1 items-end justify-end gap-3 rounded-xl border border-transparent bg-slate-50/85 px-4 py-3 text-right transition-colors duration-300",
-            theme.prevNextHover,
+            "group flex min-h-[3.25rem] flex-1 items-end justify-end gap-3 rounded-xl border-2 border-transparent px-4 py-3 text-right transition-all duration-300",
+            theme.light,
+            theme.hoverBorder,
           )}
         >
           <span className="min-w-0 text-right">
@@ -63,8 +66,8 @@ export function FilePrevNext({ topic, prevFile, nextFile }: Props) {
           </span>
           <span
             className={cn(
-              "flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white text-slate-500 shadow-sm ring-1 ring-slate-200/80 transition-colors duration-300",
-              theme.prevNextIconHover,
+              "flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white text-slate-500 shadow-sm ring-1 ring-slate-200/80 transition-all duration-300 group-hover:text-current",
+              theme.text,
             )}
           >
             <ChevronRight className="h-5 w-5" strokeWidth={2} />

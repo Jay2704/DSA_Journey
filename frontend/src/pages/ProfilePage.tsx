@@ -12,17 +12,17 @@ export function ProfilePage() {
 
       <div className="mt-10 grid gap-4 sm:grid-cols-3">
         <div className="rounded-2xl border border-slate-200/85 bg-white p-5 shadow-[var(--shadow-card)]">
-          <FolderOpen className="h-5 w-5 text-[#2563eb]" strokeWidth={2} />
+          <FolderOpen className="h-5 w-5 text-slate-700" strokeWidth={2} />
           <p className="mt-3 text-2xl font-semibold text-[#0a1628]">{stats.topicCount}</p>
           <p className="text-xs font-medium uppercase tracking-wide text-slate-500">Topics</p>
         </div>
         <div className="rounded-2xl border border-slate-200/85 bg-white p-5 shadow-[var(--shadow-card)]">
-          <Code2 className="h-5 w-5 text-[#2563eb]" strokeWidth={2} />
+          <Code2 className="h-5 w-5 text-slate-700" strokeWidth={2} />
           <p className="mt-3 text-2xl font-semibold text-[#0a1628]">{stats.totalProblems}</p>
           <p className="text-xs font-medium uppercase tracking-wide text-slate-500">Files</p>
         </div>
         <div className="rounded-2xl border border-slate-200/85 bg-white p-5 shadow-[var(--shadow-card)]">
-          <BookOpen className="h-5 w-5 text-[#2563eb]" strokeWidth={2} />
+          <BookOpen className="h-5 w-5 text-slate-700" strokeWidth={2} />
           <p className="mt-3 text-sm font-semibold text-[#0a1628]">{stats.languagesUsed.join(" · ")}</p>
           <p className="text-xs font-medium uppercase tracking-wide text-slate-500">Languages</p>
         </div>
@@ -48,7 +48,7 @@ export function ProfilePage() {
       <section className="mt-8 rounded-2xl border border-dashed border-slate-200/90 bg-slate-50/60 p-6">
         <h2 className="text-sm font-semibold text-[#0a1628]">Favorite topic</h2>
         <p className="mt-2 text-sm text-slate-500">Placeholder — pin a topic here when you add personal prefs to the data layer.</p>
-        <p className="mt-3 text-sm font-medium text-[#2563eb]">{topics.find((t) => t.featured)?.title ?? topics[0]?.title}</p>
+        <p className="mt-3 text-sm font-medium text-slate-800">{topics.find((t) => t.featured)?.title ?? topics[0]?.title}</p>
       </section>
 
       <section className="mt-8 text-sm leading-relaxed text-slate-600">

@@ -25,18 +25,18 @@ export function ContinueLearning() {
               <Link
                 to={filePath(f.topicSlug, f.slug)}
                 className={cn(
-                  "flex items-center justify-between gap-3 rounded-xl border border-white/60 bg-white/80 px-4 py-3 pl-3 shadow-sm transition",
-                  theme.listAccent,
-                  theme.rowHover,
+                  "flex items-center justify-between gap-3 rounded-xl border-2 bg-white/90 px-4 py-3 pl-3 shadow-sm transition-all duration-300 hover:shadow-md",
+                  theme.border,
+                  theme.light,
                 )}
               >
                 <div className="min-w-0 flex-1 pl-1">
                   <p className="truncate font-mono text-sm font-semibold text-slate-900">{f.name}</p>
-                  <p className="truncate text-xs text-slate-500">
+                  <p className={cn("truncate text-xs", theme.text, "opacity-80")}>
                     {f.topicName} · {statusLabel(f.status)}
                   </p>
                 </div>
-                <ArrowRight className={cn("h-4 w-4 shrink-0", theme.rowArrow)} strokeWidth={2} />
+                <ArrowRight className={cn("h-4 w-4 shrink-0", theme.text)} strokeWidth={2} />
               </Link>
             </li>
           );

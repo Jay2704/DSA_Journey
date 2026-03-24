@@ -11,9 +11,9 @@ const topicChips: { label: string; className: string }[] = [
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden rounded-[2rem] border-2 border-white/90 bg-gradient-to-br from-blue-50/90 via-white to-rose-50/50 p-8 shadow-xl shadow-blue-500/10 ring-1 ring-slate-200/70 sm:rounded-[2.25rem] sm:p-10 lg:p-12">
+    <section className="relative overflow-hidden rounded-[2rem] border-2 border-white/90 bg-gradient-to-br from-slate-50/95 via-white to-violet-50/40 p-8 shadow-xl shadow-slate-500/10 ring-1 ring-slate-200/70 sm:rounded-[2.25rem] sm:p-10 lg:p-12">
       <div
-        className="pointer-events-none absolute -right-24 -top-32 h-96 w-96 rounded-full bg-gradient-to-br from-blue-400/35 via-sky-300/30 to-transparent blur-3xl"
+        className="pointer-events-none absolute -right-24 -top-32 h-96 w-96 rounded-full bg-gradient-to-br from-violet-400/25 via-emerald-300/20 to-transparent blur-3xl"
         aria-hidden
       />
       <div
@@ -33,7 +33,7 @@ export function HeroSection() {
           <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-600">Personal learning explorer</p>
           <h1 className="text-4xl font-bold tracking-tight text-[#0a1628] sm:text-5xl lg:text-[3.25rem] lg:leading-[1.08]">
             DSA{" "}
-            <span className="bg-gradient-to-r from-blue-600 via-violet-600 to-rose-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-emerald-600 via-violet-600 to-rose-600 bg-clip-text text-transparent">
               Journey
             </span>
           </h1>

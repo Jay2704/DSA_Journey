@@ -15,13 +15,16 @@ export function RecentActivity() {
         {recentActivity.map((row, i) => {
           const theme = getTopicThemeFromTopicTitle(row.topic);
           return (
-            <li key={i} className={cn("pl-4", theme.listAccent)}>
+            <li
+              key={i}
+              className={cn("border-l-4 py-0.5 pl-4 transition-all duration-300", theme.border, theme.light)}
+            >
               <div className="min-w-0">
                 <p className="text-sm font-medium text-[#0a1628]">
                   <span className="text-slate-500">{row.label}</span>{" "}
                   <span className="font-mono text-slate-800">{row.file}</span>
                 </p>
-                <p className="text-xs text-slate-500">{row.topic}</p>
+                <p className={cn("text-xs", theme.text)}>{row.topic}</p>
               </div>
             </li>
           );

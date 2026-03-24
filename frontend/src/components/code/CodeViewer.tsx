@@ -19,6 +19,7 @@ const LINE_LEADING = "leading-[1.625]";
 export function CodeViewer({ code, language, fileName, className, headerClassName, outerClassName }: Props) {
   const [html, setHtml] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(null);
+  const headerAccent = Boolean(headerClassName);
 
   const lang = language === "Java" ? "java" : "python";
   const lines = useMemo(() => code.split("\n"), [code]);
@@ -59,8 +60,20 @@ export function CodeViewer({ code, language, fileName, className, headerClassNam
           headerClassName ?? "border-slate-700/80 bg-slate-900/90",
         )}
       >
-        <span className="min-w-0 truncate font-mono text-[11px] font-medium text-slate-400">{fileName}</span>
-        <span className="shrink-0 rounded-md bg-slate-800 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-300">
+        <span
+          className={cn(
+            "min-w-0 truncate font-mono text-[11px] font-medium",
+            headerAccent ? "text-white/95" : "text-slate-400",
+          )}
+        >
+          {fileName}
+        </span>
+        <span
+          className={cn(
+            "shrink-0 rounded-md px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide",
+            headerAccent ? "bg-white/20 text-white" : "bg-slate-800 text-slate-300",
+          )}
+        >
           {language}
         </span>
       </div>

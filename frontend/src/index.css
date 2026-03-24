@@ -27,7 +27,7 @@ body {
 }
 
 .ui-focus-ring:focus-visible {
-  @apply outline-none ring-2 ring-[#2563eb]/25 ring-offset-2 ring-offset-white;
+  @apply outline-none ring-2 ring-slate-400/35 ring-offset-2 ring-offset-white;
 }
 
 /* Shiki output inside code viewer */

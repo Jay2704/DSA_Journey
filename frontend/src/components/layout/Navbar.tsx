@@ -8,7 +8,7 @@ const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   cn(
     "ui-focus-ring rounded-xl px-3 py-2 text-sm font-semibold transition-colors",
     isActive
-      ? "bg-blue-50 text-[#1d4ed8] ring-1 ring-[#2563eb]/20"
+      ? "bg-slate-900 text-white ring-1 ring-slate-900/20"
       : "text-slate-600 hover:bg-slate-100/90 hover:text-[#0a1628]",
   );
 
@@ -80,7 +80,7 @@ export function Navbar() {
           aria-current={home ? "page" : undefined}
           className={cn(
             "ui-focus-ring min-w-0 max-w-[min(100%,12rem)] flex-1 truncate text-center text-[0.8125rem] font-semibold leading-snug tracking-tight sm:max-w-none sm:text-sm md:flex-none md:rounded-lg md:px-2 md:py-1.5 md:text-[0.95rem] md:text-left",
-            home ? "text-[#1d4ed8] md:ring-2 md:ring-[#2563eb]/20" : "text-[#0a1628]",
+            home ? "text-slate-900 md:ring-2 md:ring-slate-900/15" : "text-[#0a1628]",
           )}
         >
           DSA Journey Explorer
@@ -89,19 +89,19 @@ export function Navbar() {
         <nav className="hidden items-center gap-1 md:flex" aria-label="Main">
           <NavLink to={routes.topics} className={navLinkClass}>
             <span className="flex items-center gap-1.5">
-              <Layers className="h-4 w-4 text-[#2563eb]" strokeWidth={2} />
+              <Layers className="h-4 w-4 opacity-90" strokeWidth={2} />
               Topics
             </span>
           </NavLink>
           <NavLink to={routes.search} className={navLinkClass}>
             <span className="flex items-center gap-1.5">
-              <Search className="h-4 w-4 text-[#2563eb]" strokeWidth={2} />
+              <Search className="h-4 w-4 opacity-90" strokeWidth={2} />
               Search
             </span>
           </NavLink>
           <NavLink to={routes.profile} className={navLinkClass}>
             <span className="flex items-center gap-1.5">
-              <User className="h-4 w-4 text-[#2563eb]" strokeWidth={2} />
+              <User className="h-4 w-4 opacity-90" strokeWidth={2} />
               Profile
             </span>
           </NavLink>
@@ -113,7 +113,7 @@ export function Navbar() {
           className={cn(
             "ui-focus-ring flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl sm:h-11 sm:w-11 md:hidden",
             searchActive
-              ? "bg-blue-50 text-[#1d4ed8] ring-2 ring-[#2563eb]/20"
+              ? "bg-slate-900 text-white ring-2 ring-slate-900/20"
               : "text-[#0a1628] transition-colors hover:bg-slate-100/90 active:bg-slate-100",
           )}
           aria-label="Search"

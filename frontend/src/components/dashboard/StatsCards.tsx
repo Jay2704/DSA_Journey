@@ -10,10 +10,10 @@ type Props = {
 /** Dashboard: each stat card has its own hue; bottom bar is a multi-track “coverage” strip */
 const cardStyles = [
   {
-    border: "border-2 border-blue-300/90",
-    bg: "bg-gradient-to-br from-blue-100/95 via-white to-sky-50/90",
-    icon: "bg-gradient-to-br from-blue-300 to-blue-200 text-blue-900 ring-2 ring-blue-400/80 shadow-md",
-    bar: "bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-400",
+    border: "border-2 border-slate-300/90",
+    bg: "bg-gradient-to-br from-slate-100/95 via-white to-slate-50/90",
+    icon: "bg-gradient-to-br from-slate-400 to-slate-300 text-slate-950 ring-2 ring-slate-400/60 shadow-md",
+    bar: "bg-gradient-to-r from-slate-600 via-slate-500 to-slate-400",
     fillPct: 88,
   },
   {
@@ -33,7 +33,7 @@ const cardStyles = [
 ] as const;
 
 const rainbowStrip =
-  "bg-gradient-to-r from-blue-500 via-emerald-500 via-violet-500 via-amber-500 to-red-500";
+  "bg-gradient-to-r from-slate-500 via-emerald-500 via-violet-500 via-amber-500 to-red-500";
 
 export function StatsCards({ totalProblems, topicCount, languages }: Props) {
   const items = [

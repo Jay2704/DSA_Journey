@@ -34,7 +34,7 @@ export function SearchPage() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Try arrays, bfs, python, recursion…"
-          className="w-full rounded-2xl border border-slate-200/85 bg-white py-3.5 pl-12 pr-4 text-sm shadow-sm outline-none transition focus:border-blue-300/90 focus:ring-4 focus:ring-[#2563eb]/12"
+          className="w-full rounded-2xl border border-slate-200/85 bg-white py-3.5 pl-12 pr-4 text-sm shadow-sm outline-none transition-all duration-300 focus:border-slate-400 focus:ring-4 focus:ring-slate-300/30"
           autoFocus
         />
       </label>
@@ -53,7 +53,7 @@ export function SearchPage() {
       {topicHits.length > 0 ? (
         <section className="mt-10">
           <h2 className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-slate-500">
-            <Layers className="h-4 w-4 text-[#2563eb]" strokeWidth={2} />
+            <Layers className="h-4 w-4 text-slate-600" strokeWidth={2} />
             Topics
           </h2>
           <ul className="space-y-2">
@@ -64,20 +64,21 @@ export function SearchPage() {
                   <Link
                     to={topicPath(t.slug)}
                     className={cn(
-                      "flex items-center gap-3 rounded-xl border px-4 py-3 shadow-sm transition",
-                      theme.searchCard,
+                      "flex items-center gap-3 rounded-xl border-2 px-4 py-3 shadow-sm transition-all duration-300 hover:shadow-md",
+                      theme.border,
+                      theme.light,
                     )}
                   >
                     <div
                       className={cn(
-                        "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl",
-                        theme.searchIconBg,
+                        "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-white shadow-sm",
+                        theme.accent,
                       )}
                     >
                       <TopicIcon icon={t.icon} className="h-5 w-5" />
                     </div>
                     <div className="min-w-0">
-                      <p className="font-semibold text-[#0a1628]">
+                      <p className={cn("font-semibold", theme.text)}>
                         <HighlightText text={t.title} query={query} />
                       </p>
                       <p className="text-xs font-medium text-slate-400">{formatTopicSlugLabel(t.slug)}</p>
@@ -96,35 +97,36 @@ export function SearchPage() {
       {fileHits.length > 0 ? (
         <section className="mt-10">
           <h2 className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-slate-500">
-            <FileCode2 className="h-4 w-4 text-[#2563eb]" strokeWidth={2} />
+            <FileCode2 className="h-4 w-4 text-slate-600" strokeWidth={2} />
             Files
           </h2>
           <ul className="space-y-2">
             {fileHits.map(({ topic, file }) => {
               const theme = getTopicTheme(topic.slug);
               return (
-              <li key={file.id}>
-                <Link
-                  to={filePath(topic.slug, file.slug)}
-                  className={cn(
-                    "flex flex-col gap-1 rounded-xl border px-4 py-3 shadow-sm transition sm:flex-row sm:items-center sm:justify-between",
-                    theme.searchCard,
-                  )}
-                >
-                  <div className="min-w-0">
-                    <p className="font-mono text-sm font-semibold text-slate-900">
-                      <HighlightText text={file.name} query={query} />
-                    </p>
-                    <p className="text-xs text-slate-500">
-                      {topic.title} · {file.language}
-                    </p>
-                    <p className="mt-1 line-clamp-2 text-sm text-slate-600">
-                      <HighlightText text={file.shortDescription} query={query} />
-                    </p>
-                  </div>
-                </Link>
-              </li>
-            );
+                <li key={file.id}>
+                  <Link
+                    to={filePath(topic.slug, file.slug)}
+                    className={cn(
+                      "flex flex-col gap-1 rounded-xl border-2 px-4 py-3 shadow-sm transition-all duration-300 hover:shadow-md sm:flex-row sm:items-center sm:justify-between",
+                      theme.border,
+                      theme.light,
+                    )}
+                  >
+                    <div className="min-w-0">
+                      <p className={cn("font-mono text-sm font-semibold", theme.text)}>
+                        <HighlightText text={file.name} query={query} />
+                      </p>
+                      <p className="text-xs text-slate-500">
+                        {topic.title} · {file.language}
+                      </p>
+                      <p className="mt-1 line-clamp-2 text-sm text-slate-600">
+                        <HighlightText text={file.shortDescription} query={query} />
+                      </p>
+                    </div>
+                  </Link>
+                </li>
+              );
             })}
           </ul>
         </section>
