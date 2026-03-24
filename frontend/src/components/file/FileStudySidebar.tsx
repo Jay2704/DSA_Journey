@@ -15,7 +15,12 @@ export function FileStudySidebar({ topic, file, relatedFiles }: Props) {
   const theme = getTopicTheme(topic.slug);
   return (
     <div className={cn("space-y-6", theme.transition)}>
-      <section className="rounded-2xl border border-slate-200/85 bg-white p-5 shadow-[var(--shadow-card)]">
+      <section
+        className={cn(
+          "rounded-2xl border-y border-r border-slate-200/70 p-5 shadow-[var(--shadow-card)]",
+          theme.sidebarSection,
+        )}
+      >
         <h3 className="text-sm font-semibold text-[#0a1628]">Concepts practiced</h3>
         {file.concepts.length ? (
           <ul className="mt-3 space-y-2">
@@ -33,7 +38,12 @@ export function FileStudySidebar({ topic, file, relatedFiles }: Props) {
         )}
       </section>
 
-      <section className="rounded-2xl border border-slate-200/85 bg-white p-5 shadow-[var(--shadow-card)]">
+      <section
+        className={cn(
+          "rounded-2xl border-y border-r border-slate-200/70 p-5 shadow-[var(--shadow-card)]",
+          theme.sidebarSection,
+        )}
+      >
         <h3 className="text-sm font-semibold text-[#0a1628]">Patterns / tags</h3>
         {file.tags.length ? (
           <div className="mt-3 flex flex-wrap gap-2">
@@ -58,7 +68,12 @@ export function FileStudySidebar({ topic, file, relatedFiles }: Props) {
         </p>
       </section>
 
-      <section className="rounded-2xl border border-slate-200/85 bg-white p-5 shadow-[var(--shadow-card)]">
+      <section
+        className={cn(
+          "rounded-2xl border-y border-r border-slate-200/70 p-5 shadow-[var(--shadow-card)]",
+          theme.sidebarSection,
+        )}
+      >
         <h3 className="text-sm font-semibold text-[#0a1628]">Related files</h3>
         {relatedFiles.length ? (
           <ul className="mt-3 space-y-2">
@@ -66,7 +81,7 @@ export function FileStudySidebar({ topic, file, relatedFiles }: Props) {
               <li key={f.id}>
                 <Link
                   to={filePath(topic.slug, f.slug)}
-                  className="flex min-w-0 items-center gap-2 rounded-lg px-2 py-2 text-sm text-slate-700 transition hover:bg-slate-50"
+                  className="flex min-w-0 items-center gap-2 rounded-lg px-2 py-2 text-sm text-slate-700 transition hover:bg-white/80"
                 >
                   <FileCode2 className={cn("h-4 w-4 shrink-0", theme.sidebarFileIcon)} strokeWidth={2} />
                   <span className="truncate font-mono text-xs font-medium">{f.name}</span>

@@ -171,8 +171,12 @@ export function TopicDetailPage() {
   const previewHidden = mobileTab !== "preview" ? "hidden lg:flex" : "";
 
   return (
-    <div className={cn(theme.pageShell, theme.transition, "min-h-full w-full")}>
-      <div className="mx-auto max-w-6xl min-w-0 px-4 pt-8 sm:px-6 sm:pt-10">
+    <div className={cn(theme.pageShell, theme.transition, "relative min-h-full w-full")}>
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+        <div className={cn("absolute -right-16 -top-20 h-64 w-64 rounded-full blur-3xl sm:h-80 sm:w-80", theme.pageDecorA)} />
+        <div className={cn("absolute -left-12 top-1/3 h-56 w-56 rounded-full blur-3xl sm:h-72 sm:w-72", theme.pageDecorB)} />
+      </div>
+      <div className="relative z-[1] mx-auto max-w-6xl min-w-0 px-4 pt-8 sm:px-6 sm:pt-10">
       <nav
         className="mb-8 flex min-w-0 flex-nowrap items-center gap-1.5 overflow-x-auto pb-1 text-sm text-slate-600 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         aria-label="Breadcrumb"
@@ -189,19 +193,14 @@ export function TopicDetailPage() {
         <span className={cn("shrink-0", theme.breadcrumbActive)}>{topic.title}</span>
       </nav>
 
-      <header
-        className={cn(
-          "mb-8 rounded-[1.65rem] border p-6 shadow-[var(--shadow-card)] sm:p-8",
-          theme.featuredBorder,
-          theme.cardBg,
-        )}
-      >
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
+      <header className={cn("relative mb-8 overflow-hidden rounded-[1.65rem] p-6 sm:p-8", theme.heroPanel)}>
+        <div className={cn("pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full blur-2xl", theme.heroGlow)} aria-hidden />
+        <div className="relative flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
           <div className={cn("flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl ring-1", theme.iconFeatured)}>
             <TopicIcon icon={topic.icon} className="h-7 w-7" strokeWidth={1.75} />
           </div>
           <div className={cn("min-w-0 flex-1", theme.headingCluster)}>
-            <h1 className="text-2xl font-semibold tracking-tight text-[#0a1628] sm:text-3xl">{topic.title}</h1>
+            <h1 className={cn("text-2xl font-bold tracking-tight sm:text-3xl", theme.titleGradient)}>{topic.title}</h1>
             <p className="mt-2 max-w-3xl text-slate-600">{topic.description}</p>
             <div className="mt-4 flex flex-wrap items-center gap-2">
               <span
@@ -234,7 +233,7 @@ export function TopicDetailPage() {
         </div>
       </header>
 
-      <div className={cn("rounded-[1.35rem] border p-3 sm:p-4", theme.explorerChrome)}>
+      <div className={cn("relative rounded-[1.35rem] p-3 sm:p-4", theme.explorerChrome)}>
         <div className="mb-3 flex flex-col gap-2 px-1 sm:flex-row sm:items-center">
           <div className="flex min-w-0 items-center gap-2.5">
             <Layers className={cn("h-4 w-4 shrink-0", theme.explorerIcon)} strokeWidth={2} />
@@ -272,7 +271,11 @@ export function TopicDetailPage() {
 
         <div className="grid gap-4 lg:grid-cols-12 lg:items-stretch">
           <div
-            className={`flex min-h-[min(18rem,45vh)] flex-col overflow-hidden rounded-2xl border border-slate-200/85 bg-white shadow-[var(--shadow-card)] lg:col-span-5 lg:min-h-[28rem] ${explorerHidden}`}
+            className={cn(
+              "flex min-h-[min(18rem,45vh)] flex-col overflow-hidden rounded-2xl lg:col-span-5 lg:min-h-[28rem]",
+              theme.explorerLeftColumn,
+              explorerHidden,
+            )}
           >
             <div className="space-y-3 border-b border-slate-200/60 p-4 sm:p-5">
               <label className="relative block">
@@ -426,7 +429,11 @@ export function TopicDetailPage() {
           </div>
 
           <div
-            className={`flex min-h-[min(18rem,45vh)] flex-col overflow-hidden rounded-2xl border border-slate-200/85 bg-white shadow-[var(--shadow-card)] lg:col-span-7 lg:min-h-[28rem] ${previewHidden}`}
+            className={cn(
+              "flex min-h-[min(18rem,45vh)] flex-col overflow-hidden rounded-2xl lg:col-span-7 lg:min-h-[28rem]",
+              theme.previewColumn,
+              previewHidden,
+            )}
           >
             {selected ? (
               <>

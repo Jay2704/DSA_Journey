@@ -10,11 +10,13 @@ type Props = {
   className?: string;
   /** Accent the header bar (e.g. topic theme) without changing the code panel */
   headerClassName?: string;
+  /** Outer frame ring / glow (topic theme) */
+  outerClassName?: string;
 };
 
 const LINE_LEADING = "leading-[1.625]";
 
-export function CodeViewer({ code, language, fileName, className, headerClassName }: Props) {
+export function CodeViewer({ code, language, fileName, className, headerClassName, outerClassName }: Props) {
   const [html, setHtml] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(null);
 
@@ -46,7 +48,8 @@ export function CodeViewer({ code, language, fileName, className, headerClassNam
   return (
     <div
       className={cn(
-        "min-w-0 overflow-hidden rounded-2xl border border-slate-700/80 bg-[#0d1117] shadow-inner",
+        "min-w-0 overflow-hidden rounded-2xl border border-slate-700/80 bg-[#0d1117] shadow-inner transition-[box-shadow,ring-color] duration-300",
+        outerClassName,
         className,
       )}
     >

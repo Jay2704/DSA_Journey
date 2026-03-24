@@ -44,10 +44,11 @@ export function TopicCard({ topic, variant }: Props) {
       <article
         id={topic.id}
         className={cn(
-          "dashboard-card relative scroll-mt-28 overflow-hidden rounded-[2rem] border shadow-[var(--shadow-card)] sm:rounded-[2.25rem]",
+          "dashboard-card relative scroll-mt-28 overflow-hidden rounded-[2rem] border-2 shadow-[var(--shadow-card)] sm:rounded-[2.25rem]",
           theme.transition,
           theme.featuredBorder,
           theme.featuredBg,
+          theme.featuredCardShadow,
         )}
       >
         <CardBackdrop svgAccent={theme.svgAccent} />
@@ -71,7 +72,12 @@ export function TopicCard({ topic, variant }: Props) {
             </div>
             <div className="min-w-0 flex-1 space-y-2">
               <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-slate-500">Featured path</p>
-              <h3 className="text-2xl font-semibold leading-[1.15] tracking-[-0.02em] text-[#0a1628] sm:text-3xl">
+              <h3
+                className={cn(
+                  "text-2xl font-bold leading-[1.15] tracking-[-0.02em] sm:text-3xl",
+                  theme.titleGradient,
+                )}
+              >
                 {topic.title}
               </h3>
             </div>
@@ -127,11 +133,13 @@ export function TopicCard({ topic, variant }: Props) {
     <article
       id={topic.id}
       className={cn(
-        "dashboard-card group relative flex min-h-full scroll-mt-28 flex-col overflow-hidden rounded-[1.65rem] border shadow-[var(--shadow-card)] sm:rounded-[1.85rem]",
+        "dashboard-card group relative flex min-h-full scroll-mt-28 flex-col overflow-hidden rounded-[1.65rem] shadow-[var(--shadow-card)] sm:rounded-[1.85rem]",
         theme.transition,
         theme.cardBorder,
+        theme.cardTopBar,
         theme.cardBg,
         theme.cardBorderHover,
+        theme.cardHoverShadow,
         "hover:shadow-[var(--shadow-card-hover)]",
       )}
     >
@@ -146,7 +154,12 @@ export function TopicCard({ topic, variant }: Props) {
             <TopicIcon icon={topic.icon} className="h-6 w-6" strokeWidth={1.65} />
           </div>
           <div className="min-w-0 flex-1 pt-0.5">
-            <h3 className="text-xl font-semibold leading-snug tracking-[-0.02em] text-[#0a1628] sm:text-[1.35rem]">
+            <h3
+              className={cn(
+                "text-xl font-bold leading-snug tracking-[-0.02em] sm:text-[1.35rem]",
+                theme.titleGradient,
+              )}
+            >
               {topic.title}
             </h3>
           </div>

@@ -50,8 +50,12 @@ export function FileDetailPage() {
   const theme = getTopicTheme(topic.slug);
 
   return (
-    <div className={cn(theme.pageShell, theme.transition, "min-h-full w-full")}>
-      <div className="mx-auto max-w-6xl min-w-0 px-4 pt-8 sm:px-6 sm:pt-10">
+    <div className={cn(theme.pageShell, theme.transition, "relative min-h-full w-full")}>
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+        <div className={cn("absolute -right-16 -top-20 h-64 w-64 rounded-full blur-3xl sm:h-80 sm:w-80", theme.pageDecorA)} />
+        <div className={cn("absolute -left-12 top-1/4 h-56 w-56 rounded-full blur-3xl sm:h-72 sm:w-72", theme.pageDecorB)} />
+      </div>
+      <div className="relative z-[1] mx-auto max-w-6xl min-w-0 px-4 pt-8 sm:px-6 sm:pt-10">
       <nav
         className="mb-8 flex min-w-0 flex-nowrap items-center gap-1.5 overflow-x-auto pb-1 text-sm text-slate-600 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         aria-label="Breadcrumb"
@@ -79,14 +83,9 @@ export function FileDetailPage() {
         </span>
       </nav>
 
-      <header
-        className={cn(
-          "mb-8 rounded-[1.65rem] border p-6 shadow-[var(--shadow-card)] sm:p-8",
-          theme.featuredBorder,
-          theme.cardBg,
-        )}
-      >
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+      <header className={cn("relative mb-8 overflow-hidden rounded-[1.65rem] p-6 sm:p-8", theme.heroPanel)}>
+        <div className={cn("pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full blur-2xl", theme.heroGlow)} aria-hidden />
+        <div className="relative flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
           <div className={cn("min-w-0 space-y-3", theme.headingCluster)}>
             <div className="flex flex-wrap items-center gap-2">
               <span className={cn("rounded-md border px-2 py-0.5 text-xs font-semibold", theme.fileHeaderTag)}>
@@ -109,7 +108,9 @@ export function FileDetailPage() {
                 <span className="text-xs font-medium text-slate-500">{difficultyLabel(file.difficulty)}</span>
               ) : null}
             </div>
-            <h1 className="font-mono text-2xl font-bold tracking-tight text-[#0a1628] sm:text-3xl">{file.name}</h1>
+            <h1 className={cn("font-mono text-2xl font-bold tracking-tight sm:text-3xl", theme.titleGradient)}>
+              {file.name}
+            </h1>
             <p className="text-sm text-slate-600">{topic.title}</p>
             <p className="max-w-3xl text-sm leading-relaxed text-slate-700">{file.shortDescription}</p>
             <div className="flex flex-wrap gap-2">
@@ -179,6 +180,7 @@ export function FileDetailPage() {
                 language={file.language}
                 fileName={file.name}
                 headerClassName={theme.codeViewerHeader}
+                outerClassName={theme.codeViewerRing}
               />
             </Suspense>
           )}
