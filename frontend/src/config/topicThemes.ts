@@ -47,12 +47,13 @@ export const topicThemes: Record<string, TopicTheme> = {
   recursion: {
     primary: "yellow",
     accent: "bg-yellow-500",
-    light: "bg-yellow-50",
-    border: "border-yellow-200",
-    text: "text-yellow-800",
-    chip: "border border-yellow-200 bg-yellow-100 text-yellow-900",
-    button: "bg-yellow-600 hover:bg-yellow-700 text-white shadow-md shadow-yellow-500/25",
-    hoverBorder: "hover:border-yellow-200",
+    light: "bg-yellow-100/70",
+    border: "border-yellow-300",
+    text: "text-yellow-600",
+    chip: "border border-yellow-300 bg-yellow-200/90 text-neutral-900",
+    button:
+      "bg-yellow-400 hover:bg-yellow-300 text-neutral-900 font-semibold shadow-md shadow-yellow-400/35 ring-1 ring-yellow-500/20",
+    hoverBorder: "hover:border-yellow-400",
   },
   stacks: {
     primary: "red",

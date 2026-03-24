@@ -5,7 +5,7 @@ const topicChips: { label: string; className: string }[] = [
   { label: "Arrays", className: "border-blue-400/90 bg-blue-100 text-blue-950 shadow-sm" },
   { label: "Trees", className: "border-violet-400/90 bg-violet-100 text-violet-950 shadow-sm" },
   { label: "Graphs", className: "border-emerald-400/90 bg-emerald-100 text-emerald-950 shadow-sm" },
-  { label: "Recursion", className: "border-yellow-400/90 bg-yellow-100 text-yellow-950 shadow-sm" },
+  { label: "Recursion", className: "border-yellow-400 bg-yellow-200/95 text-neutral-900 shadow-sm" },
   { label: "Stacks", className: "border-red-400/90 bg-red-100 text-red-950 shadow-sm" },
 ];
 
